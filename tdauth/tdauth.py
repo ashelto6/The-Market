@@ -1,6 +1,7 @@
 from tda import auth, client
 import config
 
+#create a config.py file for your authentication credentials
 try:
   c = auth.client_from_token_file(config.token_path, config.api_key)
 except FileNotFoundError:

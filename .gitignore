@@ -134,3 +134,6 @@ dmypy.json
 #dt access
 templates/dt/dt.html
 dt.py
+
+#TDA
+tdauth/config.py
