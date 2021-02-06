@@ -131,6 +131,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#data access
+#dt access
 templates/dt/dt.html
 dt.py
