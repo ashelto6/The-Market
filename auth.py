@@ -24,6 +24,7 @@ def login_post():
   return redirect(url_for('auth.login'))
 
  login_user(user, remember=remember)
+ flash('Login Successful, Welcome!')
  return redirect(url_for('main.portfolio'))
 
 @auth.route('/signup')
