@@ -1,25 +1,15 @@
-from flask import Flask, render_template, jsonify
-from tda import auth, client
-import json
-import config
+from flask import Blueprint, render_template
+from . import db
 
-try:
-    c = auth.client_from_token_file(config.token_path, config.api_key)
-except FileNotFoundError:
-    from selenium import webdriver
-    with webdriver.Chrome(executable_path='/mnt/c/Users/ajshe/Desktop/projects/unJumble/chromedriver.exe') as driver:
-        c = auth.client_from_login_flow(
-            driver, config.api_key, config.redirect_uri, config.token_path)
-
-app = Flask(__name__)
+main = Blueprint('main', __name__)
 
 #homepage route
-@app.route('/')
-@app.route('/home')
+@main.route('/')
+@main.route('/home')
 def hello():
-	return render_template("index.html")
+	return render_template("/main/index.html")
 
 #trades page route
-@app.route('/portfolio')
+@main.route('/portfolio')
 def trades():
-	return render_template("portfolio.html")
+	return render_template("/main/portfolio.html")
