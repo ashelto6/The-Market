@@ -17,17 +17,5 @@ def index():
 def portfolio():
 	return render_template('/main/portfolio.html', name=current_user.first_name)
 
-####################################################### 
-# put in separate file & .gitignore 
-@main.route('/dt/admin/<email>/10051998') 
-@login_required
-def dt(email):
-	admin = User.query.filter_by(email=email).first_or_404()
-	if admin:
-		users=User.query.all()
-		return render_template('/dt/dt.html', users=users)
-
-	return redirect('main.index')
-#######################################################
 
 #ADD CONTENT TO THE HOMEPAGE, AND WORK ON GETTING TDAMERITRADE DATA DISPLAYED ON THE PORTFOLIO PAGE
