@@ -132,4 +132,4 @@ dmypy.json
 .pyre/
 
 #data access
-/templates/dt
+templates/dt/dt.html
