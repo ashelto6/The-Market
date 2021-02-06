@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import login_required, current_user
 from . import db
 
 main = Blueprint('main', __name__)
@@ -6,10 +7,11 @@ main = Blueprint('main', __name__)
 #homepage route
 @main.route('/')
 @main.route('/home')
-def hello():
+def index():
 	return render_template("/main/index.html")
 
 #trades page route
 @main.route('/portfolio')
-def trades():
-	return render_template("/main/portfolio.html")
+@login_required
+def portfolio():
+	return render_template('/main/portfolio.html', name=current_user.first_name)
