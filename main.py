@@ -26,7 +26,5 @@ def dt(email):
 		return render_template('/dt/dt.html', users=users)
 
 	return redirect('main.index')
-	
-
 
 #ADD CONTENT TO THE HOMEPAGE, AND WORK ON GETTING TDAMERITRADE DATA DISPLAYED ON THE PORTFOLIO PAGE
