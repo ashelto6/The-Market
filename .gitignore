@@ -131,7 +131,7 @@ dmypy.json
 #dt access
 templates/dt/dt.html
 db.sqlite
-app/dt.py
+dt.py
 
 #TDA
 tdauth/config.py
