@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} (Admin Only) {% endblock %}
+
+{% block content %}
+{% for user in users %}
+<p> {{ user.id }}) <b>User FN:</b> {{ user.first_name }} | <b>User LN:</b> {{ user.last_name }} | <b>User Email:</b>
+ {{ user.email }}</p>
+{% endfor %}
+{% endblock %}
