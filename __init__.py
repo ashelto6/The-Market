@@ -9,7 +9,6 @@ load_dotenv(os.path.join(basedir, '.env'))
 
 db = SQLAlchemy()
 
-
 def create_app():
  app = Flask(__name__)
 
@@ -38,4 +37,3 @@ def create_app():
  app.register_blueprint(dt_blueprint)
 
  return app
-
