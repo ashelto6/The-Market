@@ -1,8 +1,10 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-import os
 from dotenv import load_dotenv
+from tda import auth, client
+from . import tdconfig
+import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, '.env'))
@@ -11,6 +13,13 @@ db = SQLAlchemy()
 
 def create_app():
  app = Flask(__name__)
+ 
+ try:
+  c = auth.client_from_token_file(tdconfig.token_path, tdconfig.api_key)
+ except FileNotFoundError:
+  from selenium import webdriver
+  with webdriver.Chrome(executable_path='/mnt/c/Users/ajshe/Desktop/projects/unJumble/chromedriver.exe') as driver:
+   c = auth.client_from_login_flow(driver, tdconfig.api_key, tdconfig.redirect_uri, tdconfig.token_path)
 
  app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
  app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
