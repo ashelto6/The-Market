@@ -129,10 +129,10 @@ dmypy.json
 .pyre/
 
 #dt access
-templates/dt/dt.html
-db.sqlite
+app/templates/dt/dt.html
+app/db.sqlite
 app/dt.py
 
 #TDA
-tdauth/config.py
-token
+app/tdauth/config.py
+app/token
