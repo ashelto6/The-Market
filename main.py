@@ -16,5 +16,3 @@ def index():
 @login_required
 def portfolio():
 	return render_template('/main/portfolio.html', name=current_user.first_name)
-
-#ADD CONTENT TO THE HOMEPAGE, AND WORK ON GETTING TDAMERITRADE DATA DISPLAYED ON THE PORTFOLIO PAGE
