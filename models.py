@@ -1,5 +1,4 @@
 from flask_login import UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 
 class User(UserMixin, db.Model):
@@ -8,6 +7,8 @@ class User(UserMixin, db.Model):
  first_name = db.Column(db.String(100))
  email = db.Column(db.String(100), unique=True)
  password = db.Column(db.String(100))
+
+#add database table for admin to gain access to data page
 
 
 
