@@ -1,2 +1,2 @@
-# unJumble
-unJumbler Program
+# The Market
+Stock Market application
