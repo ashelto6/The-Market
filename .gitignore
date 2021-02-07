@@ -134,5 +134,5 @@ db.sqlite
 dt.py
 
 #TDA
-tdauth/config.py
+tdconfig.py
 token
