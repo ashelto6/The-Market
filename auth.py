@@ -40,6 +40,19 @@ def signup_post():
  password = request.form.get('password')
  repassword = request.form.get('repassword')
 
+######### iterating & keeping track to make sure each field holds a value #########
+ credentials = [first_name, last_name, email, password, repassword]
+
+ x = 0
+ for c in credentials: 
+  if c == "":
+   x = x+1
+ 
+ if x > 0:
+  flash("Please enter a value for each field.")
+  return redirect(url_for('auth.signup'))
+###################################################################################
+
  if password != repassword:
   flash("Passwords do not match, Please try again.")
   return redirect(url_for('auth.signup'))
