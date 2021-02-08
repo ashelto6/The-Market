@@ -73,11 +73,13 @@ body {
 .menuleftcontent {
  float: left;
  width: 205px;
- height: 85%;
- position: absolute;
+ height: 75%;
+ position:fixed;
  margin-left: -205px;
  padding: 20px;
- background-color: #000000;
+ background-color: rgb(233, 233, 233);
+  border: 2px rgb(0, 0, 0, .08) solid;
+  border-radius: 3%;
 }
 
 #clearingdiv {
