@@ -1,15 +1,30 @@
 .titl {
- border: 2px rgb(0, 0, 0) solid;
+ background-color: darkgrey;
+ border: 2px rgb(0, 0, 0, .10) solid;
  color: rgb(17, 0, 255);
  text-align: center;
  padding: 10px;
  margin-top: 20px;
 }
 
+#navbar{
+ background-color: green;
+
+}
+
 #marg{
  margin-top: 20px;
 }
 
-p{
+#btt{
+ margin-bottom: 15px;
+}
+
+#text-center{
+
  text-align: center;
+}
+
+#nav-shad{
+  border-bottom: 2px rgb(0, 0, 0, .15) solid;
 }
