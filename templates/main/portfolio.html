@@ -10,11 +10,37 @@
 </div>
 {% endif %}
 {% endwith %}
+<div id="marg">
+
+</div>
 
 <div id="marg">
  <div class="container">
-  <div id="page">
-   <div class="maincontent">
+  <div class="col mb-4">
+   <div id="page">
+    <!-- this block is shown on regular to large screens -->
+    <div class="maincontent">
+     <div id="firstcontent">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quas et fugiat? Debitis,
+      assumenda laudantium. Culpa perspiciatis aperiam id obcaecati, illo amet commodi! Veniam id minima laborum aut et
+      error. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ratione molestiae nisi quasi ipsa sapiente
+      accusantium a sunt, voluptatibus eaque fugiat ea ipsum laborum maiores, autem beatae saepe dolor incidunt.</div>
+     <div id="secondcontent">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quas et fugiat? Debitis,
+      assumenda laudantium. Culpa perspiciatis aperiam id obcaecati, illo amet commodi! Veniam id minima laborum aut et
+      error. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ratione molestiae nisi quasi ipsa sapiente
+      accusantium a sunt, voluptatibus eaque fugiat ea ipsum laborum maiores, autem beatae saepe dolor incidunt.</div>
+    </div>
+
+    <div class="menuleftcontent">
+     <ul id="menu">
+      <li><a href="#firstcontent">first</a></li>
+      <li><a href="#secondcontent">second</a></li>
+     </ul>
+    </div>
+    <div id="clearingdiv"></div>
+   </div>
+
+   <!-- this block is shown on small screens -->
+   <div class="maincontent-sm">
     <div id="firstcontent">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quas et fugiat? Debitis,
      assumenda laudantium. Culpa perspiciatis aperiam id obcaecati, illo amet commodi! Veniam id minima laborum aut et
      error. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ratione molestiae nisi quasi ipsa sapiente
@@ -24,39 +50,9 @@
      error. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ratione molestiae nisi quasi ipsa sapiente
      accusantium a sunt, voluptatibus eaque fugiat ea ipsum laborum maiores, autem beatae saepe dolor incidunt.</div>
    </div>
-   <div class="menuleftcontent">
-    <ul id="menu">
-     <li><a href="#firstcontent">first</a></li>
-     <li><a href="#secondcontent">second</a></li>
-    </ul>
-   </div>
-   <div id="clearingdiv"></div>
-  </div>
-
-  <div class="maincontent-sm">
-   <div id="firstcontent">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quas et fugiat? Debitis,
-    assumenda laudantium. Culpa perspiciatis aperiam id obcaecati, illo amet commodi! Veniam id minima laborum aut et
-    error. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ratione molestiae nisi quasi ipsa sapiente
-    accusantium a sunt, voluptatibus eaque fugiat ea ipsum laborum maiores, autem beatae saepe dolor incidunt.</div>
-   <div id="secondcontent">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem quas et fugiat? Debitis,
-    assumenda laudantium. Culpa perspiciatis aperiam id obcaecati, illo amet commodi! Veniam id minima laborum aut et
-    error. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ratione molestiae nisi quasi ipsa sapiente
-    accusantium a sunt, voluptatibus eaque fugiat ea ipsum laborum maiores, autem beatae saepe dolor incidunt.</div>
   </div>
  </div>
 </div>
-
-<script>
- $(function () {
-  $(".maincontent > div:gt(0)").hide();
-  $("#menu a").on("click", function (e) {
-   var href = $(this).attr("href");
-   $(".maincontent > " + href).show();
-   $(".maincontent > :not(" + href + ")").hide();
-  });
- });
-</script>
-
 
 
 
