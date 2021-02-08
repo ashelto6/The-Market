@@ -16,14 +16,14 @@
 
 <body>
     <!-- navbar -->
-    <section class="hero is-info" id="navbar" >
+    <section class="hero is-info" id="navbar">
 
         <div class="hero-head">
             <nav id="nav-shad" class="navbar" role="navigation" aria-label="main navigation">
                 <span class="navbar-brand">
                     <a href="{{ url_for('main.index') }}">
                         <b><big><strong></span><u> The Market </u></span></strong></big></b>
-                    </a>
+                </a>
                 </span>
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
                     data-target="navbarBasicExample">
@@ -50,7 +50,7 @@
                                 <a href="{{ url_for('auth.signup') }}" class="button is-warning">
                                     <strong>Sign up</strong>
                                 </a>
-                                <a href="{{ url_for('auth.login') }}" >
+                                <a href="{{ url_for('auth.login') }}">
                                     <strong>Log in</strong>
                                 </a>
                                 {% endif %}
