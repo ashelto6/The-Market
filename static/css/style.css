@@ -75,8 +75,8 @@ body {
 
 .menuleftcontent {
  float: left;
- width: 220px;
- height: 450px;
+ width: 205px;
+ height: 85%;
  position: absolute;
  margin-left: -205px;
  padding: 20px;
