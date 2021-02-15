@@ -2,17 +2,6 @@ body {
   background-color: rgb(233, 233, 233);
 }
 
-.titl {
-  border: 2px rgb(0, 0, 0, .10) solid;
-  color: rgb(17, 0, 255);
-  text-align: center;
-  padding: 10px;
-  margin-top: 20px;
-  -webkit-box-shadow: 4px 4px 2px 2px rgb(15, 15, 15);
-  -moz-box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.6);
-  box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.4);
-}
-
 #nav-shad {
   border-bottom: 2px rgb(0, 0, 0, .15) solid;
 }
