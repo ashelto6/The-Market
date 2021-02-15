@@ -17,17 +17,17 @@ body {
   border-bottom: 2px rgb(0, 0, 0, .15) solid;
 }
 
-#shad {
-  -webkit-box-shadow: 4px 4px 2px 2px rgb(15, 15, 15);
-  -moz-box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.6);
-  box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.4);
-}
-
 #navbar {
   background-color: rgb(50, 182, 33);
 
 }
-
+hr{
+  border: none;
+  height: 1px;
+  /* Set the hr color */
+  background-color: rgb(155, 155, 155);
+  /* Modern Browsers */
+}
 #marg {
   margin-top: 20px;
 }
