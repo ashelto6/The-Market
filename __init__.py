@@ -2,10 +2,17 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
+from td.client import TDClient
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, '.env'))
+
+TDSession = TDClient(
+ client_id=os.environ.get('CLIENT_ID'),
+ redirect_uri=os.environ.get('REDIRECT_URI'),
+ credentials_path=os.environ.get('CREDENTIALS_PATH')
+)
 
 db = SQLAlchemy()
 
