@@ -212,7 +212,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{LCdata.GOOG.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{LCdata.GOOG.mark}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(LCdata.GOOG.mark)}}</p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample5" role="button"
                       aria-expanded="false" aria-controls="collapseExample5">
@@ -222,10 +222,10 @@
                   <div class="collapse" id="collapseExample5">
                     <div class="card card-body">
                       <div class="container">
-                        <p><small><b>Open</b>: {{LCdata.GOOG.openPrice}}</small></p>
-                        <p><small><b>High</b>: {{LCdata.GOOG.highPrice}}</small></p>
-                        <p><small><b>Low</b>: {{LCdata.GOOG.lowPrice}}</small></p>
-                        <p><small><b>Last Close</b>: {{LCdata.GOOG.closePrice}}</small></p>
+                        <p><small><b>Open</b>: {{"$%.2f"|format(LCdata.GOOG.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(LCdata.GOOG.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(LCdata.GOOG.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(LCdata.GOOG.closePrice)}}</small></p>
                         <p><small><b>Volume</b>: {{LCdata.GOOG.totalVolume}}</small></p>
                       </div>
                     </div>
@@ -239,7 +239,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{LCdata.MSFT.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{LCdata.MSFT.mark}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(LCdata.MSFT.mark)}}</p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample6" role="button"
                       aria-expanded="false" aria-controls="collapseExample6">
@@ -249,10 +249,10 @@
                   <div class="collapse" id="collapseExample6">
                     <div class="card card-body">
                       <div class="container">
-                        <p><small><b>Open</b>: {{LCdata.MSFT.openPrice}}</small></p>
-                        <p><small><b>High</b>: {{LCdata.MSFT.highPrice}}</small></p>
-                        <p><small><b>Low</b>: {{LCdata.MSFT.lowPrice}}</small></p>
-                        <p><small><b>Last Close</b>: {{LCdata.MSFT.closePrice}}</small></p>
+                        <p><small><b>Open</b>: {{"$%.2f"|format(LCdata.MSFT.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(LCdata.MSFT.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(LCdata.MSFT.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(LCdata.MSFT.closePrice)}}</small></p>
                         <p><small><b>Volume</b>: {{LCdata.MSFT.totalVolume}}</small></p>
                       </div>
                     </div>
