@@ -46,5 +46,4 @@ def index():
 def portfolio():
 	TDSession.login()
 	content = TDSession.get_accounts(account='all', fields=['positions'])
-	data=jsonify(content)
 	return render_template('/main/portfolio.html', name=current_user.first_name, data=content)
