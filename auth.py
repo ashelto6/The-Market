@@ -14,7 +14,7 @@ def login():
 
 @auth.route('/login', methods=['POST'])
 def login_post():
-  email = request.form.get('email')
+  email = request.form.get('email').lower()
   password = request.form.get('password')
   remember = True if request.form.get('remember') else False
 
@@ -36,7 +36,7 @@ def signup():
 def signup_post():
   first_name= request.form.get('first name')
   last_name = request.form.get('last name')
-  email = request.form.get('email')
+  email = request.form.get('email').lower()
   password = request.form.get('password')
   repassword = request.form.get('repassword')
 
