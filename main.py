@@ -1,13 +1,12 @@
-from flask import Blueprint, render_template, redirect, jsonify
+from flask import Blueprint, render_template, redirect
 from flask_login import login_required, current_user
 from . import db, TDSession
 from .models import User
 from dotenv import load_dotenv
 import os, json, requests, collections
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, '.env'))
-
-
 main = Blueprint('main', __name__)
 
 #homepage route
@@ -32,7 +31,7 @@ def index():
 	MCdata = content.json()
 	###################################################################
 	
-		#for small cap data ##############################################
+		#for penny cap data ##############################################
 	PSticklist=['AEZS','ZOM'] #ticker list 
 	endpoint = "https://api.tdameritrade.com/v1/marketdata/quotes"
 	payload = {'apikey':os.environ.get('CLIENT_ID'), 'symbol':PSticklist}
