@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, render_template, redirect,jsonify
 from flask_login import login_required, current_user
 from . import db, TDSession
 from .models import User
@@ -40,9 +40,11 @@ def index():
 	###################################################################
 	return render_template("/main/index.html",  LCdata=LCdata, MCdata=MCdata, PSdata=PSdata)
 
-#trades page route
+#portfolio page route
 @main.route('/portfolio')
 @login_required
 def portfolio():
 	TDSession.login()
-	return render_template('/main/portfolio.html', name=current_user.first_name)
+	content = TDSession.get_accounts(account='all', fields=['positions'])
+	data=jsonify(content)
+	return render_template('/main/portfolio.html', name=current_user.first_name, data=content)
