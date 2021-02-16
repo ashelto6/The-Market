@@ -85,7 +85,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{PSdata.AEZS.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{PSdata.AEZS.mark}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(PSdata.AEZS.mark)}}</p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample1" role="button"
                       aria-expanded="false" aria-controls="collapseExample1">
@@ -96,10 +96,10 @@
                     <div class="card card-body">
                       <div class="container">
 
-                        <p><small><b>Open</b>: {{PSdata.AEZS.openPrice}}</small></p>
-                        <p><small><b>High</b>: {{PSdata.AEZS.highPrice}}</small></p>
-                        <p><small><b>Low</b>: {{PSdata.AEZS.lowPrice}}</small></p>
-                        <p><small><b>Last Close</b>: {{PSdata.AEZS.closePrice}}</small></p>
+                        <p><small><b>Open</b>: {{"$%.2f"|format(PSdata.AEZS.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(PSdata.AEZS.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(PSdata.AEZS.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(PSdata.AEZS.closePrice)}}</small></p>
                         <p><small><b>Volume</b>: {{PSdata.AEZS.totalVolume}}</small></p>
                       </div>
                     </div>
@@ -113,7 +113,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{PSdata.ZOM.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{PSdata.ZOM.mark}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(PSdata.ZOM.mark)}}</p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample2" role="button"
                       aria-expanded="false" aria-controls="collapseExample2">
@@ -123,10 +123,10 @@
                   <div class="collapse" id="collapseExample2">
                     <div class="card card-body">
                       <div class="container">
-                        <p><small><b>Open</b>: {{PSdata.ZOM.openPrice}}</small></p>
-                        <p><small><b>High</b>: {{PSdata.ZOM.highPrice}}</small></p>
-                        <p><small><b>Low</b>: {{PSdata.ZOM.lowPrice}}</small></p>
-                        <p><small><b>Last Close</b>: {{PSdata.ZOM.closePrice}}</small></p>
+                        <p><small><b>Open</b>: {{"$%.2f"|format(PSdata.ZOM.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(PSdata.ZOM.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(PSdata.ZOM.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(PSdata.ZOM.closePrice)}}</small></p>
                         <p><small><b>Volume</b>: {{PSdata.ZOM.totalVolume}}</small></p>
                       </div>
                     </div>
@@ -149,7 +149,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{MCdata.CROX.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{MCdata.CROX.mark}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(MCdata.CROX.mark)}}</p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample3" role="button"
                       aria-expanded="false" aria-controls="collapseExample3">
@@ -159,10 +159,10 @@
                   <div class="collapse" id="collapseExample3">
                     <div class="card card-body">
                       <div class="container">
-                        <p><small><b>Open</b>: {{MCdata.CROX.openPrice}}</small></p>
-                        <p><small><b>High</b>: {{MCdata.CROX.highPrice}}</small></p>
-                        <p><small><b>Low</b>: {{MCdata.CROX.lowPrice}}</small></p>
-                        <p><small><b>Last Close</b>: {{MCdata.CROX.closePrice}}</small></p>
+                        <p><small><b>Open</b>: {{"$%.2f"|format(MCdata.CROX.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(MCdata.CROX.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(MCdata.CROX.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(MCdata.CROX.closePrice)}}</small></p>
                         <p><small><b>Volume</b>: {{MCdata.CROX.totalVolume}}</small></p>
                       </div>
                     </div>
@@ -176,7 +176,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{MCdata.PLUG.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{MCdata.PLUG.mark}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(MCdata.PLUG.mark)}}</p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample4" role="button"
                       aria-expanded="false" aria-controls="collapseExample4">
@@ -186,10 +186,10 @@
                   <div class="collapse" id="collapseExample4">
                     <div class="card card-body">
                       <div class="container">
-                        <p><small><b>Open</b>: {{MCdata.PLUG.openPrice}}</small></p>
-                        <p><small><b>High</b>: {{MCdata.PLUG.highPrice}}</small></p>
-                        <p><small><b>Low</b>: {{MCdata.PLUG.lowPrice}}</small></p>
-                        <p><small><b>Last Close</b>: {{MCdata.PLUG.closePrice}}</small></p>
+                        <p><small><b>Open</b>: {{"$%.2f"|format(MCdata.PLUG.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(MCdata.PLUG.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(MCdata.PLUG.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(MCdata.PLUG.closePrice)}}</small></p>
                         <p><small><b>Volume</b>: {{MCdata.PLUG.totalVolume}}</small></p>
                       </div>
                     </div>
@@ -264,6 +264,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 <!-- Row 1 
