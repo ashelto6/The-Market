@@ -1,5 +1,5 @@
-#check_creds() is called in the "auth.signup ['POST']" view function
-def check_creds(first_name, last_name, email, password, repassword):
+#efcount() is called in the "auth.signup ['POST']" view function
+def efcount(first_name, last_name, email, password, repassword):
  credentials = [first_name, last_name, email, password, repassword]
  x = 0
  for c in credentials: 

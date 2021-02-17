@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from .models import User
-from .check import check_creds
+from .check import efcount
 from . import db
 
 auth = Blueprint('auth', __name__)
@@ -41,7 +41,7 @@ def signup_post():
   password = request.form.get('password')
   repassword = request.form.get('repassword')
 
-  empty_fields = check_creds(first_name, last_name, email, password, repassword)
+  empty_fields = efcount(first_name, last_name, email, password, repassword)
   if empty_fields > 0:
     flash("Please enter a value for each field.")
     return redirect(url_for('auth.signup'))
