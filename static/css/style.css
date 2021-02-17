@@ -3,7 +3,7 @@ body {
 }
 
 #nav-shad {
-  border-bottom: 2px rgb(0, 0, 0, .15) solid;
+  border-bottom: 3px rgb(0, 0, 0, .15) solid;
 }
 
 #navbar {
@@ -62,17 +62,11 @@ hr{
   margin-left: 30px;
   padding: 20px;
   background-color: #08b324;
-  -webkit-box-shadow: 4px 4px 2px 2px rgb(15, 15, 15);
-  -moz-box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.6);
-  box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.4);
 }
 
 .maincontent-sm {
   padding: 20px;
   background-color: #08b324;
-  -webkit-box-shadow: 4px 4px 2px 2px rgb(15, 15, 15);
-  -moz-box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.6);
-  box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.4);
 }
 
 .menuleftcontent {
@@ -84,11 +78,17 @@ hr{
   padding: 20px;
   background-color: rgb(233, 233, 233);
   border: 2px rgb(0, 0, 0, .08) solid;
-  -webkit-box-shadow: 4px 4px 2px 2px rgb(15, 15, 15);
-  -moz-box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.6);
-  box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.4);
 }
 
 #clearingdiv {
   clear: both;
+}
+
+div.card, 
+div.maincontent, 
+div.menuleftcontent, 
+div.maincontent-sm, 
+div.box, div.notification, 
+div.carousel {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
