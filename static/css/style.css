@@ -78,13 +78,12 @@ hr{
 .menuleftcontent {
   float: left;
   width: 205px;
-  height: 75%;
-  position: fixed;
+  height: 20%;
+  position: absolute;
   margin-left: -205px;
   padding: 20px;
   background-color: rgb(233, 233, 233);
   border: 2px rgb(0, 0, 0, .08) solid;
-  border-radius: 3%;
   -webkit-box-shadow: 4px 4px 2px 2px rgb(15, 15, 15);
   -moz-box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.6);
   box-shadow: 4px 4px 1px 0px rgba(0, 0, 0, 0.4);
