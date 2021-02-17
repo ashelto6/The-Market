@@ -41,7 +41,7 @@ def signup_post():
   password = request.form.get('password')
   repassword = request.form.get('repassword')
 
-  empty_fields = efcount(first_name, last_name, email, password, repassword)
+  empty_fields = efcount(first_name, last_name, email, password, repassword) #returns number of empty fields
   if empty_fields > 0:
     flash("Please enter a value for each field.")
     return redirect(url_for('auth.signup'))
