@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
+from password_strength import PasswordPolicy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from .models import User
@@ -46,6 +47,12 @@ def signup_post():
     flash("Please enter a value for each field.")
     return redirect(url_for('auth.signup'))
 
+  policy = PasswordPolicy.from_names(strength=0.30)
+  err = policy.test(password)
+  if len(err) > 0:
+    flash('Password is too weak! Please choose something harder to guess.')        
+    return redirect(url_for('auth.signup'))
+  
   if password != repassword:
     flash("Passwords do not match, Please try again.")
     return redirect(url_for('auth.signup'))
