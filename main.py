@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect,jsonify
+from flask import Blueprint, render_template, redirect, jsonify
 from flask_login import login_required, current_user
 from . import db, TDSession
 from .models import User
@@ -14,9 +14,8 @@ main = Blueprint('main', __name__)
 @main.route('/home')
 def index():
 	TDSession.login()
-
 	#for large cap data ###############################################
-	LCticklist=['GOOG','MSFT'] #ticker list 
+	LCticklist=['TSLA','AMZN'] #ticker list 
 	endpoint = "https://api.tdameritrade.com/v1/marketdata/quotes"
 	payload = {'apikey':os.environ.get('CLIENT_ID'), 'symbol':LCticklist}
 	content = requests.get(url=endpoint, params=payload)
@@ -24,7 +23,7 @@ def index():
 	###################################################################
 
 	#for mid cap data #################################################
-	MCticklist=['CROX','PLUG'] #ticker list 
+	MCticklist=['RIOT','JMIA'] #ticker list 
 	endpoint = "https://api.tdameritrade.com/v1/marketdata/quotes"
 	payload = {'apikey':os.environ.get('CLIENT_ID'), 'symbol':MCticklist}
 	content = requests.get(url=endpoint, params=payload)
@@ -32,7 +31,7 @@ def index():
 	###################################################################
 	
 		#for penny cap data ##############################################
-	PSticklist=['AEZS','ZOM'] #ticker list 
+	PSticklist=['CTRM','ZOM'] #ticker list 
 	endpoint = "https://api.tdameritrade.com/v1/marketdata/quotes"
 	payload = {'apikey':os.environ.get('CLIENT_ID'), 'symbol':PSticklist}
 	content = requests.get(url=endpoint, params=payload)
