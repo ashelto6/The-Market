@@ -11,7 +11,7 @@
 </div>
 {% endif %}
 {% endwith %}
-
+{{PSdata}}
 <a href="#top"></a>
 <br>
 <div class="container">
@@ -73,19 +73,52 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <br>
-
+    <!----------------------------------------------------------------- PENNY CARDS ------------------------------------------------------------------------->
     <div class="tab-pane fade show active" id="penny" role="tabpanel" aria-labelledby="penny-tab">
       <p class="text-center"><small><b>Market Cap: $300M-$2B</b></small></p>
-
       <div class="container">
         <div class="text-center">
           <div class="row row-cols-1 row-cols-md-2">
+            {% if "%.2f"|format(PSdata.CTRM.mark) < "%.2f"|format(PSdata.CTRM.closePrice) %}
+            <!-- Penny1: if red day -->
             <div class="col mb-4">
-              <div class="card">
+              <div class="card-red">
                 <div class="card-body">
-                  <h5 class="card-title">{{PSdata.AEZS.symbol}}
+                  <h5 class="card-title">{{PSdata.CTRM.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{"$%.2f"|format(PSdata.AEZS.mark)}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(PSdata.CTRM.mark)}} <span
+                      style="color: red;">({{"%.2f"|format("%.2f"|format(PSdata.CTRM.mark)|float - "%.2f"|format(PSdata.CTRM.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-danger" data-toggle="collapse" href="#collapseExample1" role="button"
+                      aria-expanded="false" aria-controls="collapseExample1">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample1">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(PSdata.CTRM.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(PSdata.CTRM.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(PSdata.CTRM.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(PSdata.CTRM.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{PSdata.CTRM.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% elif "%.2f"|format(PSdata.CTRM.mark) > "%.2f"|format(PSdata.CTRM.closePrice) %}
+            <!-- Penny1: if green day -->
+            <div class="col mb-4">
+              <div class="card card-green">
+                <div class="card-body">
+                  <h5 class="card-title">{{PSdata.CTRM.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(PSdata.CTRM.mark)}} <span
+                      style="color: green;">(+{{"%.2f"|format("%.2f"|format(PSdata.CTRM.mark)|float - "%.2f"|format(PSdata.CTRM.closePrice)|float)}})</span>
+                  </p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample1" role="button"
                       aria-expanded="false" aria-controls="collapseExample1">
@@ -95,25 +128,90 @@
                   <div class="collapse" id="collapseExample1">
                     <div class="card card-body">
                       <div class="container">
-
-                        <p><small><b>Open</b>: {{"$%.2f"|format(PSdata.AEZS.openPrice)}}</small></p>
-                        <p><small><b>High</b>: {{"$%.2f"|format(PSdata.AEZS.highPrice)}}</small></p>
-                        <p><small><b>Low</b>: {{"$%.2f"|format(PSdata.AEZS.lowPrice)}}</small></p>
-                        <p><small><b>Last Close</b>: {{"$%.2f"|format(PSdata.AEZS.closePrice)}}</small></p>
-                        <p><small><b>Volume</b>: {{PSdata.AEZS.totalVolume}}</small></p>
+                        <p><small><b>Open</b>: {{"$%.2f"|format(PSdata.CTRM.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(PSdata.CTRM.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(PSdata.CTRM.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(PSdata.CTRM.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{PSdata.CTRM.totalVolume}}</small></p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
+            {% else %}
+            <!-- Penny1: if break even day -->
             <div class="col mb-4">
               <div class="card">
                 <div class="card-body">
+                  <h5 class="card-title">{{PSdata.CTRM.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(PSdata.CTRM.mark)}}
+                    <span
+                      style="color: gray;">(±{{"%.2f"|format("%.2f"|format(PSdata.CTRM.mark)|float - "%.2f"|format(PSdata.CTRM.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-secondary" data-toggle="collapse" href="#collapseExample1" role="button"
+                      aria-expanded="false" aria-controls="collapseExample1">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample1">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(PSdata.CTRM.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(PSdata.CTRM.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(PSdata.CTRM.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(PSdata.CTRM.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{PSdata.CTRM.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if "%.2f"|format(PSdata.ZOM.mark) < "%.2f"|format(PSdata.ZOM.closePrice) %}
+            <!-- Penny2: if red day -->
+            <div class="col mb-4">
+              <div class="card card-red">
+                <div class="card-body">
                   <h5 class="card-title">{{PSdata.ZOM.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{"$%.2f"|format(PSdata.ZOM.mark)}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(PSdata.ZOM.mark)}} <span
+                      style="color: red;">({{"%.2f"|format("%.2f"|format(PSdata.ZOM.mark)|float - "%.2f"|format(PSdata.ZOM.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-danger" data-toggle="collapse" href="#collapseExample2" role="button"
+                      aria-expanded="false" aria-controls="collapseExample2">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample2">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(PSdata.ZOM.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(PSdata.ZOM.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(PSdata.ZOM.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(PSdata.ZOM.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{PSdata.ZOM.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% elif "%.2f"|format(PSdata.ZOM.mark) > "%.2f"|format(PSdata.ZOM.closePrice) %}
+            <!-- Penny2: if green day -->
+            <div class="col mb-4">
+              <div class="card card-green">
+                <div class="card-body">
+                  <h5 class="card-title">{{PSdata.ZOM.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(PSdata.ZOM.mark)}} <span
+                      style="color: green;">(+{{"%.2f"|format("%.2f"|format(PSdata.ZOM.mark)|float - "%.2f"|format(PSdata.ZOM.closePrice)|float)}})</span>
+                  </p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample2" role="button"
                       aria-expanded="false" aria-controls="collapseExample2">
@@ -134,22 +232,88 @@
                 </div>
               </div>
             </div>
+            {% else %}
+            <!-- Penny2: break even day -->
+            <div class="col mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{PSdata.ZOM.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(PSdata.ZOM.mark)}} <span
+                      style="color: gray;">(±{{"%.2f"|format("%.2f"|format(PSdata.ZOM.mark)|float - "%.2f"|format(PSdata.ZOM.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-secondary" data-toggle="collapse" href="#collapseExample2" role="button"
+                      aria-expanded="false" aria-controls="collapseExample2">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample2">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(PSdata.ZOM.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(PSdata.ZOM.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(PSdata.ZOM.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(PSdata.ZOM.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{PSdata.ZOM.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
 
+    <!---------------------------------------------------------- MID CAP CARDS --------------------------------------------------------------------------->
     <div class="tab-pane fade" id="midcap" role="tabpanel" aria-labelledby="midcap-tab">
       <p class="text-center"><small><b>Market Cap: $2B-$10B</b></small></p>
       <div class="container">
         <div class="text-center">
           <div class="row row-cols-1 row-cols-md-2">
+            {% if "%.2f"|format(MCdata.RIOT.mark) < "%.2f"|format(MCdata.RIOT.closePrice) %}
+            <!-- Mid1: if red day -->
             <div class="col mb-4">
-              <div class="card">
+              <div class="card card-red">
                 <div class="card-body">
-                  <h5 class="card-title">{{MCdata.CROX.symbol}}
+                  <h5 class="card-title">{{MCdata.RIOT.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{"$%.2f"|format(MCdata.CROX.mark)}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(MCdata.RIOT.mark)}} <span
+                      style="color: red;">({{"%.2f"|format("%.2f"|format(MCdata.RIOT.mark)|float - "%.2f"|format(MCdata.RIOT.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-danger" data-toggle="collapse" href="#collapseExample3" role="button"
+                      aria-expanded="false" aria-controls="collapseExample3">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample3">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(MCdata.RIOT.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(MCdata.RIOT.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(MCdata.RIOT.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(MCdata.RIOT.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{MCdata.RIOT.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% elif "%.2f"|format(MCdata.RIOT.mark) > "%.2f"|format(MCdata.RIOT.closePrice) %}
+            <!-- Mid1: if green day -->
+            <div class="col mb-4">
+              <div class="card card-green">
+                <div class="card-body">
+                  <h5 class="card-title">{{MCdata.RIOT.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(MCdata.RIOT.mark)}} <span
+                      style="color: green;">(+{{"%.2f"|format("%.2f"|format(MCdata.RIOT.mark)|float - "%.2f"|format(MCdata.RIOT.closePrice)|float)}})</span>
+                  </p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample3" role="button"
                       aria-expanded="false" aria-controls="collapseExample3">
@@ -159,24 +323,89 @@
                   <div class="collapse" id="collapseExample3">
                     <div class="card card-body">
                       <div class="container">
-                        <p><small><b>Open</b>: {{"$%.2f"|format(MCdata.CROX.openPrice)}}</small></p>
-                        <p><small><b>High</b>: {{"$%.2f"|format(MCdata.CROX.highPrice)}}</small></p>
-                        <p><small><b>Low</b>: {{"$%.2f"|format(MCdata.CROX.lowPrice)}}</small></p>
-                        <p><small><b>Last Close</b>: {{"$%.2f"|format(MCdata.CROX.closePrice)}}</small></p>
-                        <p><small><b>Volume</b>: {{MCdata.CROX.totalVolume}}</small></p>
+                        <p><small><b>Open</b>: {{"$%.2f"|format(MCdata.RIOT.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(MCdata.RIOT.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(MCdata.RIOT.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(MCdata.RIOT.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{MCdata.RIOT.totalVolume}}</small></p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
+            {% else %}
+            <!-- Mid1: if break even day -->
             <div class="col mb-4">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">{{MCdata.PLUG.symbol}}
+                  <h5 class="card-title">{{MCdata.RIOT.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{"$%.2f"|format(MCdata.PLUG.mark)}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(MCdata.RIOT.mark)}} <span
+                      style="color: gray;">(±{{"%.2f"|format("%.2f"|format(MCdata.RIOT.mark)|float - "%.2f"|format(MCdata.RIOT.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-secondary" data-toggle="collapse" href="#collapseExample3" role="button"
+                      aria-expanded="false" aria-controls="collapseExample3">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample3">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(MCdata.RIOT.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(MCdata.RIOT.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(MCdata.RIOT.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(MCdata.RIOT.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{MCdata.RIOT.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if "%.2f"|format(MCdata.JMIA.mark) < "%.2f"|format(MCdata.JMIA.closePrice) %}
+            <!-- Mid2: if red day -->
+            <div class="col mb-4">
+              <div class="card card-red">
+                <div class="card-body">
+                  <h5 class="card-title">{{MCdata.JMIA.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(MCdata.JMIA.mark)}} <span
+                      style="color: red;">({{"%.2f"|format("%.2f"|format(MCdata.JMIA.mark)|float - "%.2f"|format(MCdata.JMIA.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-danger" data-toggle="collapse" href="#collapseExample4" role="button"
+                      aria-expanded="false" aria-controls="collapseExample4">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample4">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(MCdata.JMIA.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(MCdata.JMIA.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(MCdata.JMIA.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(MCdata.JMIA.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{MCdata.JMIA.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% elif "%.2f"|format(MCdata.JMIA.mark) > "%.2f"|format(MCdata.JMIA.closePrice) %}
+            <!--Mid2: if green day -->
+            <div class="col mb-4">
+              <div class="card card-green">
+                <div class="card-body">
+                  <h5 class="card-title">{{MCdata.JMIA.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(MCdata.JMIA.mark)}} <span
+                      style="color: green;">(+{{"%.2f"|format("%.2f"|format(MCdata.JMIA.mark)|float - "%.2f"|format(MCdata.JMIA.closePrice)|float)}})</span>
+                  </p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample4" role="button"
                       aria-expanded="false" aria-controls="collapseExample4">
@@ -186,33 +415,98 @@
                   <div class="collapse" id="collapseExample4">
                     <div class="card card-body">
                       <div class="container">
-                        <p><small><b>Open</b>: {{"$%.2f"|format(MCdata.PLUG.openPrice)}}</small></p>
-                        <p><small><b>High</b>: {{"$%.2f"|format(MCdata.PLUG.highPrice)}}</small></p>
-                        <p><small><b>Low</b>: {{"$%.2f"|format(MCdata.PLUG.lowPrice)}}</small></p>
-                        <p><small><b>Last Close</b>: {{"$%.2f"|format(MCdata.PLUG.closePrice)}}</small></p>
-                        <p><small><b>Volume</b>: {{MCdata.PLUG.totalVolume}}</small></p>
+                        <p><small><b>Open</b>: {{"$%.2f"|format(MCdata.JMIA.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(MCdata.JMIA.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(MCdata.JMIA.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(MCdata.JMIA.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{MCdata.JMIA.totalVolume}}</small></p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            {% else %}
+            <!-- Mid2: if break even day -->
+            <div class="col mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{MCdata.JMIA.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(MCdata.JMIA.mark)}} <span
+                      style="color: gray;">(±{{"%.2f"|format("%.2f"|format(MCdata.RIOT.mark)|float - "%.2f"|format(MCdata.RIOT.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-secondary" data-toggle="collapse" href="#collapseExample4" role="button"
+                      aria-expanded="false" aria-controls="collapseExample4">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample4">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(MCdata.JMIA.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(MCdata.JMIA.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(MCdata.JMIA.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(MCdata.JMIA.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{MCdata.JMIA.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
-
+    <!---------------------------------------------------- LARGE CAP CARDS ------------------------------------------------------------------------>
     <div class="tab-pane fade" id="largecap" role="tabpanel" aria-labelledby="largecap-tab">
       <p class="text-center"><small><b>Market Cap: $10B+</b></small></p>
       <div class="container">
         <div class="text-center">
           <div class="row row-cols-1 row-cols-md-2">
+            {% if "%.2f"|format(LCdata.TSLA.mark) < "%.2f"|format(LCdata.TSLA.closePrice) %}
+            <!-- Large1: if red day -->
             <div class="col mb-4">
-              <div class="card">
+              <div class="card card-red">
                 <div class="card-body">
-                  <h5 class="card-title">{{LCdata.GOOG.symbol}}
+                  <h5 class="card-title">{{LCdata.TSLA.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{"$%.2f"|format(LCdata.GOOG.mark)}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(LCdata.TSLA.mark)}} <span
+                      style="color: red;">({{"%.2f"|format("%.2f"|format(LCdata.TSLA.mark)|float - "%.2f"|format(LCdata.TSLA.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-danger" data-toggle="collapse" href="#collapseExample5" role="button"
+                      aria-expanded="false" aria-controls="collapseExample5">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample5">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(LCdata.TSLA.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(LCdata.TSLA.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(LCdata.TSLA.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(LCdata.TSLA.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{LCdata.TSLA.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% elif "%.2f"|format(LCdata.TSLA.mark) > "%.2f"|format(LCdata.TSLA.closePrice) %}
+            <!-- Large1: if green day -->
+            <div class="col mb-4">
+              <div class="card card-green">
+                <div class="card-body">
+                  <h5 class="card-title">{{LCdata.TSLA.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(LCdata.TSLA.mark)}} <span
+                      style="color: green;">(+{{"%.2f"|format("%.2f"|format(LCdata.TSLA.mark)|float - "%.2f"|format(LCdata.TSLA.closePrice)|float)}})</span>
+                  </p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample5" role="button"
                       aria-expanded="false" aria-controls="collapseExample5">
@@ -222,24 +516,89 @@
                   <div class="collapse" id="collapseExample5">
                     <div class="card card-body">
                       <div class="container">
-                        <p><small><b>Open</b>: {{"$%.2f"|format(LCdata.GOOG.openPrice)}}</small></p>
-                        <p><small><b>High</b>: {{"$%.2f"|format(LCdata.GOOG.highPrice)}}</small></p>
-                        <p><small><b>Low</b>: {{"$%.2f"|format(LCdata.GOOG.lowPrice)}}</small></p>
-                        <p><small><b>Last Close</b>: {{"$%.2f"|format(LCdata.GOOG.closePrice)}}</small></p>
-                        <p><small><b>Volume</b>: {{LCdata.GOOG.totalVolume}}</small></p>
+                        <p><small><b>Open</b>: {{"$%.2f"|format(LCdata.TSLA.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(LCdata.TSLA.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(LCdata.TSLA.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(LCdata.TSLA.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{LCdata.TSLA.totalVolume}}</small></p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
+            {% else %}
+            <!-- Large1: if break even day -->
             <div class="col mb-4">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">{{LCdata.MSFT.symbol}}
+                  <h5 class="card-title">{{LCdata.TSLA.symbol}}
                   </h5>
-                  <p><b>Price</b>: {{"$%.2f"|format(LCdata.MSFT.mark)}}</p>
+                  <p><b>Price</b>: {{"$%.2f"|format(LCdata.TSLA.mark)}} <span
+                      style="color: gray;">(±{{"%.2f"|format("%.2f"|format(LCdata.TSLA.mark)|float - "%.2f"|format(LCdata.TSLA.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-secondary" data-toggle="collapse" href="#collapseExample5" role="button"
+                      aria-expanded="false" aria-controls="collapseExample5">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample5">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(LCdata.TSLA.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(LCdata.TSLA.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(LCdata.TSLA.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(LCdata.TSLA.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{LCdata.TSLA.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
+            {% if "%.2f"|format(LCdata.AMZN.mark) < "%.2f"|format(LCdata.AMZN.closePrice) %}
+            <!-- Large2: if red day -->
+            <div class="col mb-4">
+              <div class="card card-red">
+                <div class="card-body">
+                  <h5 class="card-title">{{LCdata.AMZN.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(LCdata.AMZN.mark)}} <span
+                      style="color: red;">({{"%.2f"|format("%.2f"|format(LCdata.AMZN.mark)|float - "%.2f"|format(LCdata.AMZN.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-danger" data-toggle="collapse" href="#collapseExample6" role="button"
+                      aria-expanded="false" aria-controls="collapseExample6">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample6">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(LCdata.AMZN.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(LCdata.AMZN.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(LCdata.AMZN.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(LCdata.AMZN.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{LCdata.AMZN.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% elif "%.2f"|format(LCdata.AMZN.mark) > "%.2f"|format(LCdata.AMZN.closePrice) %}
+            <!-- Large2: if green day -->
+            <div class="col mb-4">
+              <div class="card card-green">
+                <div class="card-body">
+                  <h5 class="card-title">{{LCdata.AMZN.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(LCdata.AMZN.mark)}} <span
+                      style="color: green;">(+{{"%.2f"|format("%.2f"|format(LCdata.AMZN.mark)|float - "%.2f"|format(LCdata.AMZN.closePrice)|float)}})</span>
+                  </p>
                   <p>
                     <a class="btn btn-sm btn-success" data-toggle="collapse" href="#collapseExample6" role="button"
                       aria-expanded="false" aria-controls="collapseExample6">
@@ -249,17 +608,48 @@
                   <div class="collapse" id="collapseExample6">
                     <div class="card card-body">
                       <div class="container">
-                        <p><small><b>Open</b>: {{"$%.2f"|format(LCdata.MSFT.openPrice)}}</small></p>
-                        <p><small><b>High</b>: {{"$%.2f"|format(LCdata.MSFT.highPrice)}}</small></p>
-                        <p><small><b>Low</b>: {{"$%.2f"|format(LCdata.MSFT.lowPrice)}}</small></p>
-                        <p><small><b>Last Close</b>: {{"$%.2f"|format(LCdata.MSFT.closePrice)}}</small></p>
-                        <p><small><b>Volume</b>: {{LCdata.MSFT.totalVolume}}</small></p>
+                        <p><small><b>Open</b>: {{"$%.2f"|format(LCdata.AMZN.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(LCdata.AMZN.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(LCdata.AMZN.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(LCdata.AMZN.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{LCdata.AMZN.totalVolume}}</small></p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            {% else %}
+            <!-- Large2: if break even day -->
+            <div class="col mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{LCdata.AMZN.symbol}}
+                  </h5>
+                  <p><b>Price</b>: {{"$%.2f"|format(LCdata.AMZN.mark)}} <span
+                      style="color: gray;">(±{{"%.2f"|format("%.2f"|format(LCdata.AMZN.mark)|float - "%.2f"|format(LCdata.AMZN.closePrice)|float)}})</span>
+                  </p>
+                  <p>
+                    <a class="btn btn-sm btn-secondary" data-toggle="collapse" href="#collapseExample6" role="button"
+                      aria-expanded="false" aria-controls="collapseExample6">
+                      More
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample6">
+                    <div class="card card-body">
+                      <div class="container">
+                        <p><small><b>Open</b>: {{"$%.2f"|format(LCdata.AMZN.openPrice)}}</small></p>
+                        <p><small><b>High</b>: {{"$%.2f"|format(LCdata.AMZN.highPrice)}}</small></p>
+                        <p><small><b>Low</b>: {{"$%.2f"|format(LCdata.AMZN.lowPrice)}}</small></p>
+                        <p><small><b>Last Close</b>: {{"$%.2f"|format(LCdata.AMZN.closePrice)}}</small></p>
+                        <p><small><b>Volume</b>: {{LCdata.AMZN.totalVolume}}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -267,71 +657,6 @@
 
   </div>
 </div>
-<!-- Row 1 
-<div class="container">
- <div id="marg">
-  <div class="text-center">
-   <div class="row row-cols-1 row-cols-md-2">
-
-    <div class="col mb-4">
-     <div class="card text-white bg-success mb-4">
-      <div class="card-header">FB</div>
-      <div class="card-body">
-       <h5 class="card-title">Success card title</h5>
-       <p class="card-title">Success card title</p>
-       <p class="card-title">Success card title</p>
-      </div>
-     </div>
-    </div>
-
-    <div class="col mb-4">
-     <div class="card text-white bg-danger mb-4">
-      <div class="card-header">AMZN</div>
-      <div class="card-body">
-       <h5 class="card-title">Success card title</h5>
-       <p class="card-title">Success card title</p>
-       <p class="card-title">Success card title</p>
-      </div>
-     </div>
-    </div>
-
-   </div>
-  </div>
- </div>
-</div>
--->
-
-<!-- row 2 
-<div class="container">
- <div id="marg">
-  <div class="text-center">
-   <div class="row row-cols-1 row-cols-md-2">
-    <div class="col mb-4">
-     <div class="card text-white bg-danger mb-4">
-      <div class="card-header">NFLX</div>
-      <div class="card-body">
-       <h5 class="card-title">Success card title</h5>
-       <p class="card-title">Success card title</p>
-       <p class="card-title">Success card title</p>
-
-      </div>
-     </div>
-    </div>
-    <div class="col mb-4">
-     <div class="card text-white bg-success mb-4">
-      <div class="card-header">MSFT</div>
-      <div class="card-body">
-       <h5 class="card-title">Success card title</h5>
-       <p class="card-title">Success card title</p>
-       <p class="card-title">Success card title</p>
-      </div>
-     </div>
-    </div>
-
-   </div>
-  </div>
- </div>
-</div>-->
 <br><br>
 
 <div class="container">
