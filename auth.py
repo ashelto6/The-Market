@@ -50,16 +50,16 @@ def signup_post():
   policy = PasswordPolicy.from_names(strength=0.30)
   err = policy.test(password)
   if len(err) > 0:
-    flash('Password is too weak! Please choose something harder to guess.')        
+    flash('Password is not strong enough.')        
     return redirect(url_for('auth.signup'))
   
   if password != repassword:
-    flash("Passwords do not match, Please try again.")
+    flash("Passwords do not match.")
     return redirect(url_for('auth.signup'))
 
   user = User.query.filter_by(email=email).first()
   if user:
-    flash('Email address already exists')
+    flash('Email address already exists.')
     return redirect(url_for('auth.signup'))
 
   new_user = User(first_name=first_name, last_name=last_name, email=email, password=generate_password_hash(password, method='sha256'))
