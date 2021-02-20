@@ -48,7 +48,7 @@
                             Portfolio
                         </a>
                         {% if current_user.is_authenticated %}
-                        <a style="color: black;" href="#" class="navbar-item">
+                        <a style="color: black;" href="{{url_for('main.settings')}}" class="navbar-item">
                             Settings
                         </a>
                         {% endif %}
