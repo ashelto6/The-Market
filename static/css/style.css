@@ -75,7 +75,7 @@ hr {
   float: left;
   width: 205px;
   height: 20%;
-  position: absolute;
+  position: sticky;
   margin-left: -205px;
   padding: 20px;
   background-color: rgb(255, 255, 255);
@@ -121,8 +121,6 @@ div.card-red {
   margin-right: auto;
   margin-left: auto;
 }
-
-
 
 @media (min-width: 1200px) {
   .container-home {
