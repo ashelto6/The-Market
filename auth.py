@@ -74,3 +74,9 @@ def signup_post():
 def logout():
   logout_user()
   return redirect(url_for('main.index'))
+
+@auth.route('/settings/change_password', methods=['POST', 'GET'])
+@login_required
+def change_password():
+  flash("Change Password hasn't been set up yet.")
+  return redirect(url_for('main.settings'))
