@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, jsonify, request, url_fo
 from flask_login import login_required, current_user
 from . import db, TDSession
 from .models import User
-from .check import efcount
+from .check import ef3count
 from dotenv import load_dotenv
 import os, json, requests
 
@@ -65,7 +65,7 @@ def edit_profile():
  
  first_name=request.form.get('first name')
  last_name = request.form.get('last name')
- email = request.form.get('email')
+ email = request.form.get('email').lower()
  user = User.query.filter_by(email=email).first()
  
  if first_name == current_user.first_name and last_name == current_user.last_name and email == current_user.email:
@@ -75,14 +75,14 @@ def edit_profile():
   flash('That email is taken.')
   return redirect(url_for('main.settings'))
  
- empty_fields = efcount(first_name, last_name, email)
+ empty_fields = ef3count(first_name, last_name, email)
  if empty_fields > 0:
   flash('Please enter a value for each field.')
   return redirect(url_for('main.settings'))
  
  current_user.first_name = first_name
  current_user.last_name = last_name
- current_user.email = email.lower()
+ current_user.email = email
  db.session.commit()
  
  flash('Account Successfully Updated!')
