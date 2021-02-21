@@ -78,5 +78,8 @@ def logout():
 @auth.route('/settings/change_password', methods=['POST', 'GET'])
 @login_required
 def change_password():
+  if request.method == 'GET':
+    return redirect(url_for('main.settings'))
+    
   flash("Change Password hasn't been set up yet.")
   return redirect(url_for('main.settings'))
