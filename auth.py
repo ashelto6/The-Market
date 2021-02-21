@@ -3,7 +3,7 @@ from password_strength import PasswordPolicy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from .models import User
-from .check import efcount
+from .check import ef5count
 from . import db
 
 auth = Blueprint('auth', __name__)
@@ -42,7 +42,7 @@ def signup_post():
   password = request.form.get('password')
   repassword = request.form.get('repassword')
 
-  empty_fields = efcount(first_name, last_name, email, password, repassword) #returns number of empty fields
+  empty_fields = ef5count(first_name, last_name, email, password, repassword) #returns number of empty fields
   if empty_fields > 0:
     flash("Please enter a value for each field.")
     return redirect(url_for('auth.signup'))
