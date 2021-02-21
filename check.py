@@ -1,14 +1,14 @@
-#efcount() is called in the "auth.signup ['POST']" view function
-def efcount(first_name, last_name, email, password, repassword):
- credentials = [first_name, last_name, email, password, repassword]
+
+def efcount(field1, field2, field3, field4, field5): #counts how many of 5 fields are empty - return int
+ credentials = [field1, field2, field3, field4, field5]
  x = 0
  for c in credentials: 
   if c == "":
    x = x+1
  return x
 
-def efcount(first_name, last_name, email):
- credentials = [first_name, last_name, email]
+def efcount(field1, field2, field3):
+ credentials = [field1, field2, field3]
  x = 0
  for c in credentials: 
   if c == "":
