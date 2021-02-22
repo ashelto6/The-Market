@@ -25,7 +25,7 @@ def index():
 	###################################################################
 
 	#for mid cap data #################################################
-	MCticklist=['PLUG','FCEL'] #ticker list 
+	MCticklist=['PLUG','RIOT','JMIA'] #ticker list 
 	MCdata = TDSession.get_quotes(instruments=MCticklist)
 	MCdata_list=[]
 	for tick in MCticklist:
@@ -34,7 +34,7 @@ def index():
 	###################################################################
 	
 	#for penny cap data ##############################################
-	PSticklist=['AEZS','CTRM'] #ticker list 
+	PSticklist=['AEZS','CTRM','ZOM'] #ticker list 
 	PSdata = TDSession.get_quotes(instruments=PSticklist)
 	PSdata_list=[]
 	for tick in PSticklist:
