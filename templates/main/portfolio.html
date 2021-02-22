@@ -22,65 +22,65 @@
           <div class="container">
             <div class="text-center">
               <div class="row row-cols-1 row-cols-md-2">
-                {% for i in range(data[0].securitiesAccount.positions|length) %}
+                {% for ticker in data[0].securitiesAccount.positions|sort(attribute='marketValue', reverse=True) %} <!-- sorting the data by greatest market value to least -->
                 <div class="col mb-4">
-                  {% if "%.2f"|format(data[0].securitiesAccount.positions[i].marketValue/data[0].securitiesAccount.positions[i].longQuantity)|float < "%.2f"|format(data[0].securitiesAccount.positions[i].averagePrice)|float %}
+                  {% if "%.2f"|format(ticker.marketValue/ticker.longQuantity)|float < "%.2f"|format(ticker.averagePrice)|float %}
                   <div class="card card-red">
                     <div class="card-body">
-                      <h5 class="card-title">{{data[0].securitiesAccount.positions[i].instrument.symbol}}
+                      <h5 class="card-title">{{ticker.instrument.symbol}}
                       </h5>
                       <p><b>Current Price</b>:
-                        {{ "$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue/data[0].securitiesAccount.positions[i].longQuantity) }}
+                        {{ "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
                       </p>
                       <p>
                       </p>
                       <div class="card card-body">
                         <div class="container">
                           <p><small><b>Average PPS</b>:
-                              {{"$%.2f"|format(data[0].securitiesAccount.positions[i].averagePrice)}}</small></p>
-                          <p><small><b>Quantity</b>: {{data[0].securitiesAccount.positions[i].longQuantity}}</small>
+                              {{"$%.2f"|format(ticker.averagePrice)}}</small></p>
+                          <p><small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                             <p><small><b>Position Worth</b>:
-                                {{"$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue)}}</small>
+                                {{"$%.2f"|format(ticker.marketValue)}}</small>
                         </div>
                       </div>
                     </div>
                   </div>
-                  {% elif "%.2f"|format(data[0].securitiesAccount.positions[i].marketValue/data[0].securitiesAccount.positions[i].longQuantity)|float > "%.2f"|format(data[0].securitiesAccount.positions[i].averagePrice)|float %}
+                  {% elif "%.2f"|format(ticker.marketValue/ticker.longQuantity)|float > "%.2f"|format(ticker.averagePrice)|float %}
                   <div class="card card-green">
                     <div class="card-body">
-                      <h5 class="card-title">{{data[0].securitiesAccount.positions[i].instrument.symbol}}
+                      <h5 class="card-title">{{ticker.instrument.symbol}}
                       </h5>
                       <p><b>Current Price</b>:
-                        {{ "$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue/data[0].securitiesAccount.positions[i].longQuantity) }}
+                        {{ "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
                       </p>
                       <p>
                       </p>
                       <div class="card card-body">
                         <div class="container">
                           <p><small><b>Average PPS</b>:
-                              {{"$%.2f"|format(data[0].securitiesAccount.positions[i].averagePrice)}}</small></p>
-                          <p><small><b>Quantity</b>: {{data[0].securitiesAccount.positions[i].longQuantity}}</small>
+                              {{"$%.2f"|format(ticker.averagePrice)}}</small></p>
+                          <p><small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                             <p><small><b>Position Worth</b>:
-                                {{"$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue)}}</small>
+                                {{"$%.2f"|format(ticker.marketValue)}}</small>
                         </div>
                       </div>
                     </div>
                   </div>{% else %} <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">{{data[0].securitiesAccount.positions[i].instrument.symbol}}
+                      <h5 class="card-title">{{ticker.instrument.symbol}}
                       </h5>
                       <p><b>Current Price</b>:
-                        {{ "$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue/data[0].securitiesAccount.positions[i].longQuantity) }}
+                        {{ "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
                       </p>
                       <p>
                       </p>
                       <div class="card card-body">
                         <div class="container">
                           <p><small><b>Average PPS</b>:
-                              {{"$%.2f"|format(data[0].securitiesAccount.positions[i].averagePrice)}}</small></p>
-                          <p><small><b>Quantity</b>: {{data[0].securitiesAccount.positions[i].longQuantity}}</small>
+                              {{"$%.2f"|format(ticker.averagePrice)}}</small></p>
+                          <p><small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                             <p><small><b>Position Worth</b>:
-                                {{"$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue)}}</small>
+                                {{"$%.2f"|format(ticker.marketValue)}}</small>
                         </div>
                       </div>
                     </div>
@@ -102,66 +102,66 @@
 
       <!-- this block is shown on small screens -->
       <div class="maincontent-sm">
-        {% for i in range(data[0].securitiesAccount.positions|length) %}
+        {% for ticker in data[0].securitiesAccount.positions|sort(attribute='marketValue', reverse=True) %}
         <div class="container">
           <div class="text-center">
             <div class="row row-cols-1 row-cols-md-2">
               <div class="col mb-4">
 
-                {% if "%.2f"|format(data[0].securitiesAccount.positions[i].marketValue/data[0].securitiesAccount.positions[i].longQuantity)|float < "%.2f"|format(data[0].securitiesAccount.positions[i].averagePrice)|float %}
+                {% if "%.2f"|format(ticker.marketValue/ticker.longQuantity)|float < "%.2f"|format(ticker.averagePrice)|float %}
 
                 <div class="card card-red">
                   <div class="card-body">
-                    <h5 class="card-title">{{data[0].securitiesAccount.positions[i].instrument.symbol}}
+                    <h5 class="card-title">{{ticker.instrument.symbol}}
                     </h5>
                     <p><b>Current Price</b>:
-                      {{ "$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue/data[0].securitiesAccount.positions[i].longQuantity) }}
+                      {{ "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
                     </p>
                     <p>
                       <a class="btn btn-sm btn-danger" data-toggle="collapse"
-                        href="#{{ data[0].securitiesAccount.positions[i].instrument.symbol }}" role="button"
+                        href="#{{ ticker.instrument.symbol }}" role="button"
                         aria-expanded="false"
-                        aria-controls="{{ data[0].securitiesAccount.positions[i].instrument.symbol }}">
+                        aria-controls="{{ ticker.instrument.symbol }}">
                         More
                       </a>
                     </p>
 
-                    <div class="collapse" id="{{ data[0].securitiesAccount.positions[i].instrument.symbol }}">
+                    <div class="collapse" id="{{ ticker.instrument.symbol }}">
                       <div class="card card-body">
                         <p><small><b>Average PPS</b>:
-                            {{"$%.2f"|format(data[0].securitiesAccount.positions[i].averagePrice)}}</small></p>
-                        <p><small><b>Quantity</b>: {{data[0].securitiesAccount.positions[i].longQuantity}}</small>
+                            {{"$%.2f"|format(ticker.averagePrice)}}</small></p>
+                        <p><small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                           <p><small><b>Position Worth</b>:
-                              {{"$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue)}}</small>
+                              {{"$%.2f"|format(ticker.marketValue)}}</small>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {% elif "%.2f"|format(data[0].securitiesAccount.positions[i].marketValue/data[0].securitiesAccount.positions[i].longQuantity)|float > "%.2f"|format(data[0].securitiesAccount.positions[i].averagePrice)|float %}
+                {% elif "%.2f"|format(ticker.marketValue/ticker.longQuantity)|float > "%.2f"|format(ticker.averagePrice)|float %}
 
                 <div class="card card-green">
                   <div class="card-body">
-                    <h5 class="card-title">{{data[0].securitiesAccount.positions[i].instrument.symbol}}
+                    <h5 class="card-title">{{ticker.instrument.symbol}}
                     </h5>
                     <p><b>Current Price</b>:
-                      {{ "$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue/data[0].securitiesAccount.positions[i].longQuantity) }}
+                      {{ "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
                     </p>
                     <p>
                       <a class="btn btn-sm btn-success" data-toggle="collapse"
-                        href="#{{ data[0].securitiesAccount.positions[i].instrument.symbol }}" role="button"
+                        href="#{{ ticker.instrument.symbol }}" role="button"
                         aria-expanded="false"
-                        aria-controls="{{ data[0].securitiesAccount.positions[i].instrument.symbol }}">
+                        aria-controls="{{ ticker.instrument.symbol }}">
                         More
                       </a>
                     </p>
-                    <div class="collapse" id="{{ data[0].securitiesAccount.positions[i].instrument.symbol }}">
+                    <div class="collapse" id="{{ ticker.instrument.symbol }}">
                       <div class="card card-body">
                         <p><small><b>Average PPS</b>:
-                            {{"$%.2f"|format(data[0].securitiesAccount.positions[i].averagePrice)}}</small></p>
-                        <p><small><b>Quantity</b>: {{data[0].securitiesAccount.positions[i].longQuantity}}</small>
+                            {{"$%.2f"|format(ticker.averagePrice)}}</small></p>
+                        <p><small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                           <p><small><b>Position Worth</b>:
-                              {{"$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue)}}</small>
+                              {{"$%.2f"|format(ticker.marketValue)}}</small>
                       </div>
                     </div>
                   </div>
@@ -171,26 +171,26 @@
 
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">{{data[0].securitiesAccount.positions[i].instrument.symbol}}
+                    <h5 class="card-title">{{ticker.instrument.symbol}}
                     </h5>
                     <p><b>Current Price</b>:
-                      {{ "$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue/data[0].securitiesAccount.positions[i].longQuantity) }}
+                      {{ "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
                     </p>
                     <p>
                       <a class="btn btn-sm btn-secondary" data-toggle="collapse"
-                        href="#{{ data[0].securitiesAccount.positions[i].instrument.symbol }}" role="button"
+                        href="#{{ ticker.instrument.symbol }}" role="button"
                         aria-expanded="false"
-                        aria-controls="{{ data[0].securitiesAccount.positions[i].instrument.symbol }}">
+                        aria-controls="{{ ticker.instrument.symbol }}">
                         More
                       </a>
                     </p>
-                    <div class="collapse" id="{{ data[0].securitiesAccount.positions[i].instrument.symbol }}">
+                    <div class="collapse" id="{{ ticker.instrument.symbol }}">
                       <div class="card card-body">
                         <p><small><b>Average PPS</b>:
-                            {{"$%.2f"|format(data[0].securitiesAccount.positions[i].averagePrice)}}</small></p>
-                        <p><small><b>Quantity</b>: {{data[0].securitiesAccount.positions[i].longQuantity}}</small>
+                            {{"$%.2f"|format(ticker.averagePrice)}}</small></p>
+                        <p><small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                           <p><small><b>Position Worth</b>:
-                              {{"$%.2f"|format(data[0].securitiesAccount.positions[i].marketValue)}}</small>
+                              {{"$%.2f"|format(ticker.marketValue)}}</small>
                       </div>
                     </div>
                   </div>
