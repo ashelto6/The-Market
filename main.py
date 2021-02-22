@@ -16,7 +16,7 @@ main = Blueprint('main', __name__)
 def index():
 	TDSession.login()
 	#for large cap data ###############################################
-	LCticklist=['GOOG','MSFT'] #ticker list 
+	LCticklist=['GOOG','MSFT','AMZN'] #ticker list
 	LCdata = TDSession.get_quotes(instruments=LCticklist)
 	LCdata_list=[]
 	for tick in LCticklist:
@@ -57,7 +57,6 @@ def portfolio():
 @login_required
 def settings():
  user=User.query.filter_by(email = current_user.email).first()
- 
  return render_template('/main/settings.html', current_user=user)
 
 @main.route('/settings/edit_profile', methods=['POST', 'GET'])
