@@ -6,9 +6,12 @@ body {
   border-bottom: 3px rgb(0, 0, 0, .15) solid;
 }
 
+footer{
+  background-color: rgb(255, 255, 255);
+}
+
 #navbar {
   background-color: rgb(255, 255, 255);
-
 }
 
 hr {
