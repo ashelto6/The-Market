@@ -16,7 +16,7 @@ main = Blueprint('main', __name__)
 def index():
 	TDSession.login()
 	#for large cap data ###############################################
-	LCticklist=['GOOG','MSFT','AMZN'] #ticker list
+	LCticklist=['GOOG','TSLA','AMZN'] #ticker list
 	LCdata = TDSession.get_quotes(instruments=LCticklist)
 	LCdata_list=[]
 	for tick in LCticklist:
