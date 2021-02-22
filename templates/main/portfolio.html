@@ -22,7 +22,8 @@
           <div class="container">
             <div class="text-center">
               <div class="row row-cols-1 row-cols-md-2">
-                {% for ticker in data[0].securitiesAccount.positions|sort(attribute='marketValue', reverse=True) %} <!-- sorting the data by greatest market value to least -->
+                {% for ticker in data[0].securitiesAccount.positions|sort(attribute='marketValue', reverse=True) %}
+                <!-- sorting the data by greatest market value to least -->
                 <div class="col mb-4">
                   {% if "%.2f"|format(ticker.marketValue/ticker.longQuantity)|float < "%.2f"|format(ticker.averagePrice)|float %}
                   <div class="card card-red">
@@ -86,7 +87,8 @@
                     </div>
                   </div>{% endif %}
                 </div>
-                {% endfor %}</div>
+                {% endfor %}
+              </div>
             </div>
           </div>
 
@@ -118,10 +120,8 @@
                       {{ "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
                     </p>
                     <p>
-                      <a class="btn btn-sm btn-danger" data-toggle="collapse"
-                        href="#{{ ticker.instrument.symbol }}" role="button"
-                        aria-expanded="false"
-                        aria-controls="{{ ticker.instrument.symbol }}">
+                      <a class="btn btn-sm btn-danger" data-toggle="collapse" href="#{{ ticker.instrument.symbol }}"
+                        role="button" aria-expanded="false" aria-controls="{{ ticker.instrument.symbol }}">
                         More
                       </a>
                     </p>
@@ -148,10 +148,8 @@
                       {{ "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
                     </p>
                     <p>
-                      <a class="btn btn-sm btn-success" data-toggle="collapse"
-                        href="#{{ ticker.instrument.symbol }}" role="button"
-                        aria-expanded="false"
-                        aria-controls="{{ ticker.instrument.symbol }}">
+                      <a class="btn btn-sm btn-success" data-toggle="collapse" href="#{{ ticker.instrument.symbol }}"
+                        role="button" aria-expanded="false" aria-controls="{{ ticker.instrument.symbol }}">
                         More
                       </a>
                     </p>
@@ -177,10 +175,8 @@
                       {{ "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
                     </p>
                     <p>
-                      <a class="btn btn-sm btn-secondary" data-toggle="collapse"
-                        href="#{{ ticker.instrument.symbol }}" role="button"
-                        aria-expanded="false"
-                        aria-controls="{{ ticker.instrument.symbol }}">
+                      <a class="btn btn-sm btn-secondary" data-toggle="collapse" href="#{{ ticker.instrument.symbol }}"
+                        role="button" aria-expanded="false" aria-controls="{{ ticker.instrument.symbol }}">
                         More
                       </a>
                     </p>
