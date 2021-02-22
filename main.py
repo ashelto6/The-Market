@@ -16,28 +16,32 @@ main = Blueprint('main', __name__)
 def index():
 	TDSession.login()
 	#for large cap data ###############################################
-	LCticklist=['TSLA','AMZN'] #ticker list 
-	endpoint = "https://api.tdameritrade.com/v1/marketdata/quotes"
-	payload = {'apikey':os.environ.get('CLIENT_ID'), 'symbol':LCticklist}
-	content = requests.get(url=endpoint, params=payload)
-	LCdata = content.json()
+	LCticklist=['GOOG','MSFT'] #ticker list 
+	LCdata = TDSession.get_quotes(instruments=LCticklist)
+	LCdata_list=[]
+	for tick in LCticklist:
+		LCdata_list.append(LCdata[tick])
+	LCdata=LCdata_list
 	###################################################################
 
 	#for mid cap data #################################################
-	MCticklist=['RIOT','JMIA'] #ticker list 
-	endpoint = "https://api.tdameritrade.com/v1/marketdata/quotes"
-	payload = {'apikey':os.environ.get('CLIENT_ID'), 'symbol':MCticklist}
-	content = requests.get(url=endpoint, params=payload)
-	MCdata = content.json()
+	MCticklist=['PLUG','FCEL'] #ticker list 
+	MCdata = TDSession.get_quotes(instruments=MCticklist)
+	MCdata_list=[]
+	for tick in MCticklist:
+		MCdata_list.append(MCdata[tick])
+	MCdata=MCdata_list
 	###################################################################
 	
-		#for penny cap data ##############################################
-	PSticklist=['CTRM','ZOM'] #ticker list 
-	endpoint = "https://api.tdameritrade.com/v1/marketdata/quotes"
-	payload = {'apikey':os.environ.get('CLIENT_ID'), 'symbol':PSticklist}
-	content = requests.get(url=endpoint, params=payload)
-	PSdata = content.json()
+	#for penny cap data ##############################################
+	PSticklist=['AEZS','CTRM'] #ticker list 
+	PSdata = TDSession.get_quotes(instruments=PSticklist)
+	PSdata_list=[]
+	for tick in PSticklist:
+		PSdata_list.append(PSdata[tick])
+	PSdata=PSdata_list
 	###################################################################
+ 
 	return render_template("/main/index.html",  LCdata=LCdata, MCdata=MCdata, PSdata=PSdata)
 
 #portfolio page route
