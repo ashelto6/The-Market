@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, request, url_for, flash
+from flask import Blueprint, render_template, redirect, request, url_for, flash, jsonify
 from flask_login import login_required, current_user
 from . import db, TDSession
 from .models import User
@@ -16,7 +16,7 @@ main = Blueprint('main', __name__)
 def index():
 	TDSession.login()
 	#for large cap data 
-	LCticklist=['GOOG','TSLA','AMZN'] #ticker list
+	LCticklist=['DIS','TSLA','AMZN','MSFT'] #ticker list
 	LCdata = TDSession.get_quotes(instruments=LCticklist)
 	LCdata_list=[]
 	for tick in LCticklist:
@@ -32,7 +32,7 @@ def index():
 	MCdata=MCdata_list
 	
 	#for penny cap data
-	PSticklist=['AEZS','CTRM','ZOM'] #ticker list 
+	PSticklist=['CTRM','ZOM','AEZS'] #ticker list 
 	PSdata = TDSession.get_quotes(instruments=PSticklist)
 	PSdata_list=[]
 	for tick in PSticklist:
@@ -40,6 +40,39 @@ def index():
 	PSdata=PSdata_list
  
 	return render_template("/main/index.html",  LCdata=LCdata, MCdata=MCdata, PSdata=PSdata)
+
+#PSData AJAX route - POST
+@main.route('/update_PSdata', methods=['POST'])
+def updatePSdata():
+	PSticklist=['CTRM','ZOM','AEZS'] #ticker list
+	PSdata = TDSession.get_quotes(instruments=PSticklist)
+	PSdata_list=[]
+	for tick in PSticklist:
+		PSdata_list.append(PSdata[tick])
+	PSdata=PSdata_list
+	return jsonify('', render_template('/ajax/update_PSdata_model.html', PSdata=PSdata))
+
+#MCdata AJAX route - POST
+@main.route('/update_MCdata', methods=['POST'])
+def updateMCdata():
+	MCticklist=['PLUG','RIOT','JMIA'] #ticker list
+	MCdata = TDSession.get_quotes(instruments=MCticklist)
+	MCdata_list=[]
+	for tick in MCticklist:
+		MCdata_list.append(MCdata[tick])
+	MCdata=MCdata_list
+	return jsonify('', render_template('/ajax/update_MCdata_model.html', MCdata=MCdata))
+
+#LCdata AJAX route - POST
+@main.route('/update_LCdata', methods=['POST'])
+def updateLCdata():
+	LCticklist=['DIS','TSLA','AMZN','MSFT'] #ticker list
+	LCdata = TDSession.get_quotes(instruments=LCticklist)
+	LCdata_list=[]
+	for tick in LCticklist:
+		LCdata_list.append(LCdata[tick])
+	LCdata=LCdata_list
+	return jsonify('', render_template('/ajax/update_LCdata_model.html', LCdata=LCdata))
 
 #portfolio page route - GET
 @main.route('/portfolio')
