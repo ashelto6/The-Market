@@ -8,12 +8,14 @@ from . import db
 
 auth = Blueprint('auth', __name__)
 
+#login page route - GET
 @auth.route('/login')
 def login():
   if current_user:
     logout_user()
   return render_template('/auth/login.html')
 
+#login page route - POST
 @auth.route('/login', methods=['POST'])
 def login_post():
   email = request.form.get('email').lower()
@@ -30,10 +32,12 @@ def login_post():
   flash(f'Login Successful, Welcome {current_user.first_name}!')
   return redirect(url_for('main.portfolio'))
 
+#signup page route - GET
 @auth.route('/signup')
 def signup():
   return render_template('/auth/signup.html')
 
+#signup page route - POST
 @auth.route('/signup', methods = ['POST'])
 def signup_post():
   first_name= request.form.get('first name')
@@ -69,12 +73,14 @@ def signup_post():
   flash("Account Successfully Created!")
   return redirect(url_for('auth.login'))
 
+#on logout button press - POST
 @auth.route('/logout')
 @login_required
 def logout():
   logout_user()
   return redirect(url_for('main.index'))
 
+#settings subroute "change_password" - POST & GET
 @auth.route('/settings/change_password', methods=['POST', 'GET'])
 @login_required
 def change_password():
