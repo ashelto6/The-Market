@@ -41,39 +41,6 @@ def index():
  
 	return render_template("/main/index.html",  LCdata=LCdata, MCdata=MCdata, PSdata=PSdata)
 
-#PSData AJAX route - POST
-@main.route('/update_PSdata', methods=['POST'])
-def updatePSdata():
-	PSticklist=['CTRM','ZOM','AEZS'] #ticker list
-	PSdata = TDSession.get_quotes(instruments=PSticklist)
-	PSdata_list=[]
-	for tick in PSticklist:
-		PSdata_list.append(PSdata[tick])
-	PSdata=PSdata_list
-	return jsonify('', render_template('/ajax/update_PSdata_model.html', PSdata=PSdata))
-
-#MCdata AJAX route - POST
-@main.route('/update_MCdata', methods=['POST'])
-def updateMCdata():
-	MCticklist=['PLUG','RIOT','JMIA'] #ticker list
-	MCdata = TDSession.get_quotes(instruments=MCticklist)
-	MCdata_list=[]
-	for tick in MCticklist:
-		MCdata_list.append(MCdata[tick])
-	MCdata=MCdata_list
-	return jsonify('', render_template('/ajax/update_MCdata_model.html', MCdata=MCdata))
-
-#LCdata AJAX route - POST
-@main.route('/update_LCdata', methods=['POST'])
-def updateLCdata():
-	LCticklist=['DIS','TSLA','AMZN','MSFT'] #ticker list
-	LCdata = TDSession.get_quotes(instruments=LCticklist)
-	LCdata_list=[]
-	for tick in LCticklist:
-		LCdata_list.append(LCdata[tick])
-	LCdata=LCdata_list
-	return jsonify('', render_template('/ajax/update_LCdata_model.html', LCdata=LCdata))
-
 #portfolio page route - GET
 @main.route('/portfolio')
 @login_required
@@ -121,3 +88,40 @@ def edit_profile():
  
  flash('Account Successfully Updated!')
  return redirect(url_for('main.settings'))
+
+######################################### AJAX ROUTES ##############################################
+
+#PSData AJAX route - POST
+@main.route('/update_PSdata', methods=['POST'])
+def updatePSdata():
+	PSticklist=['CTRM','ZOM','AEZS'] #ticker list
+	PSdata = TDSession.get_quotes(instruments=PSticklist)
+	PSdata_list=[]
+	for tick in PSticklist:
+		PSdata_list.append(PSdata[tick])
+	PSdata=PSdata_list
+	return jsonify('', render_template('/ajax/update_PSdata_model.html', PSdata=PSdata))
+
+#MCdata AJAX route - POST
+@main.route('/update_MCdata', methods=['POST'])
+def updateMCdata():
+	MCticklist=['PLUG','RIOT','JMIA'] #ticker list
+	MCdata = TDSession.get_quotes(instruments=MCticklist)
+	MCdata_list=[]
+	for tick in MCticklist:
+		MCdata_list.append(MCdata[tick])
+	MCdata=MCdata_list
+	return jsonify('', render_template('/ajax/update_MCdata_model.html', MCdata=MCdata))
+
+#LCdata AJAX route - POST
+@main.route('/update_LCdata', methods=['POST'])
+def updateLCdata():
+	LCticklist=['DIS','TSLA','AMZN','MSFT'] #ticker list
+	LCdata = TDSession.get_quotes(instruments=LCticklist)
+	LCdata_list=[]
+	for tick in LCticklist:
+		LCdata_list.append(LCdata[tick])
+	LCdata=LCdata_list
+	return jsonify('', render_template('/ajax/update_LCdata_model.html', LCdata=LCdata))
+
+#######################################################################################
