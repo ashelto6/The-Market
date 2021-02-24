@@ -88,6 +88,8 @@
     </li>
   </ul>
   <!-- Tab panes -->
+
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Tabs</button>
   <div class="tab-content">
     <br>
     <!--------------------------------------------------- PENNY CARDS --------------------------------------------------------->
@@ -185,6 +187,11 @@
             {% endfor %}
           </span>
         </div>
+      </div>
+      <div class="text-right">
+        <a id="btt" class="btn btn-secondary btn-sm" href="#top">
+          Back to top
+        </a>
       </div>
     </div>
     <!------------------------------------------------ MID CAP CARDS ------------------------------------------------->
@@ -284,6 +291,11 @@
           </div>
         </div>
       </div>
+      <div class="text-right">
+        <a id="btt" class="btn btn-secondary btn-sm" href="#top">
+          Back to top
+        </a>
+      </div>
     </div>
     <!-------------------------------------- LARGE CAP CARDS -------------------------------------------->
     <div class="tab-pane fade" id="largecap" role="tabpanel" aria-labelledby="largecap-tab">
@@ -382,19 +394,16 @@
           </div>
         </div>
       </div>
+      <div class="text-right">
+        <a id="btt" class="btn btn-secondary btn-sm" href="#top">
+          Back to top
+        </a>
+      </div>
     </div>
 
   </div>
 </div>
 <br><br>
-
-<div class="container">
-  <div class="text-right">
-    <a id="btt" class="btn btn-secondary btn-sm" href="#top">
-      Back to top
-    </a>
-  </div>
-</div>
 <br>
 
 
@@ -454,6 +463,28 @@
       });
     }
   });
+
+  mybutton = document.getElementById("myBtn");
+
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function () {
+    scrollFunction()
+  };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+
+  }
+
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 120; // For Safari
+    document.documentElement.scrollTop = 120; // For Chrome, Firefox, IE and Opera
+  }
 </script>
 
 {% endblock %}
