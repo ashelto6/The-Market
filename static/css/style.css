@@ -6,7 +6,7 @@ body {
   border-bottom: 3px rgb(0, 0, 0, .15) solid;
 }
 
-footer{
+footer {
   background-color: rgb(255, 255, 255);
 }
 
@@ -129,4 +129,40 @@ div.card-red {
   .container-home {
     width: 650px;
   }
+}
+
+#myBtn,
+#myBtntop {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Fixed/sticky position */
+  bottom: 50px;
+  /* Place the button at the bottom of the page */
+  right: 30px;
+  /* Place the button 30px from the right */
+  z-index: 99;
+  /* Make sure it does not overlap */
+  border: none;
+  /* Remove borders */
+  outline: none;
+  /* Remove outline */
+  background-color: rgb(32, 188, 86);
+  /* Set a background color */
+  color: white;
+  /* Text color */
+  cursor: pointer;
+  /* Add a mouse pointer on hover */
+  padding: 15px;
+  /* Some padding */
+  border-radius: 10px;
+  /* Rounded corners */
+  font-size: 18px;
+  /* Increase font size */
+}
+
+#myBtn:hover,
+#myBtntop:hover {
+  background-color: rgb(24, 121, 58);
+  /* Add a dark-grey background on hover */
 }
