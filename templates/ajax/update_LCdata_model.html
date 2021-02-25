@@ -1,13 +1,13 @@
             <span id="update_LCdata">{% for ticker in LCdata %}
-              {% if "%.2f"|format(ticker.mark) < "%.2f"|format(ticker.closePrice) %}
+              {% if ticker.lastPrice < ticker.closePrice %}
               <!-- Large: if red day -->
               <div class="col mb-4">
                 <div class="card card-red">
                   <div class="card-body">
                     <h5 class="card-title">{{ticker.symbol}}
                     </h5>
-                    <p><b>Price</b>: {{"$%.2f"|format(ticker.mark)}} <span
-                        style="color: red;">({{"%.2f"|format("%.2f"|format(ticker.mark)|float - "%.2f"|format(ticker.closePrice)|float)}})</span>
+                    <p><b>Price</b>: {{"$%.2f"|format(ticker.lastPrice)}} <span
+                        style="color: red;">({{"%.2f"|format("%.2f"|format(ticker.lastPrice)|float - "%.2f"|format(ticker.closePrice)|float)}})</span>
                     </p>
                     <!--<p>
                       <a class="btn btn-sm btn-danger" data-toggle="collapse" href="#{{ticker.symbol}}H" role="button"
@@ -27,15 +27,15 @@
                   </div>
                 </div>
               </div>
-              {% elif "%.2f"|format(ticker.mark) > "%.2f"|format(ticker.closePrice) %}
+              {% elif ticker.lastPrice > ticker.closePrice %}
               <!-- Large: if green day -->
               <div class="col mb-4">
                 <div class="card card-green">
                   <div class="card-body">
                     <h5 class="card-title">{{ticker.symbol}}
                     </h5>
-                    <p><b>Price</b>: {{"$%.2f"|format(ticker.mark)}} <span
-                        style="color: green;">(+{{"%.2f"|format("%.2f"|format(ticker.mark)|float - "%.2f"|format(ticker.closePrice)|float)}})</span>
+                    <p><b>Price</b>: {{"$%.2f"|format(ticker.lastPrice)}} <span
+                        style="color: green;">(+{{"%.2f"|format("%.2f"|format(ticker.lastPrice)|float - "%.2f"|format(ticker.closePrice)|float)}})</span>
                     </p>
                     <!--<p>
                       <a class="btn btn-sm btn-success" data-toggle="collapse" href="#{{ticker.symbol}}H" role="button"
@@ -62,8 +62,8 @@
                   <div class="card-body">
                     <h5 class="card-title">{{ticker.symbol}}
                     </h5>
-                    <p><b>Price</b>: {{"$%.2f"|format(ticker.mark)}} <span
-                        style="color: gray;">(±{{"%.2f"|format("%.2f"|format(ticker.mark)|float - "%.2f"|format(ticker.closePrice)|float)}})</span>
+                    <p><b>Price</b>: {{"$%.2f"|format(ticker.lastPrice)}} <span
+                        style="color: gray;">(±{{"%.2f"|format("%.2f"|format(ticker.lastPrice)|float - "%.2f"|format(ticker.closePrice)|float)}})</span>
                     </p>
                     <!--<p>
                       <a class="btn btn-sm btn-secondary" data-toggle="collapse" href="#{{ticker.symbol}}H"
