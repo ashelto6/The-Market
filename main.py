@@ -5,7 +5,7 @@ from .models import User
 from .check import ef3count
 from dotenv import load_dotenv
 import os
-
+TDSession.login()
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, '.env'))
 main = Blueprint('main', __name__)
@@ -24,7 +24,7 @@ def index():
 	LCdata=LCdata_list
 
 	#for mid cap data
-	MCticklist=['PLUG','RIOT','JMIA'] #ticker list 
+	MCticklist=['GME','RIOT','JMIA'] #ticker list 
 	MCdata = TDSession.get_quotes(instruments=MCticklist)
 	MCdata_list=[]
 	for tick in MCticklist:
@@ -32,7 +32,7 @@ def index():
 	MCdata=MCdata_list
 	
 	#for penny cap data
-	PSticklist=['CTRM','ZOM','AEZS'] #ticker list 
+	PSticklist=['AMC','ZOM','AEZS'] #ticker list 
 	PSdata = TDSession.get_quotes(instruments=PSticklist)
 	PSdata_list=[]
 	for tick in PSticklist:
@@ -94,7 +94,8 @@ def edit_profile():
 #PSData AJAX route - POST
 @main.route('/update_PSdata', methods=['POST'])
 def updatePSdata():
-	PSticklist=['CTRM','ZOM','AEZS'] #ticker list
+	TDSession.login()
+	PSticklist=['AMC','ZOM','AEZS'] #ticker list
 	PSdata = TDSession.get_quotes(instruments=PSticklist)
 	PSdata_list=[]
 	for tick in PSticklist:
@@ -105,7 +106,8 @@ def updatePSdata():
 #MCdata AJAX route - POST
 @main.route('/update_MCdata', methods=['POST'])
 def updateMCdata():
-	MCticklist=['PLUG','RIOT','JMIA'] #ticker list
+	TDSession.login()
+	MCticklist=['GME','RIOT','JMIA'] #ticker list
 	MCdata = TDSession.get_quotes(instruments=MCticklist)
 	MCdata_list=[]
 	for tick in MCticklist:
@@ -116,6 +118,7 @@ def updateMCdata():
 #LCdata AJAX route - POST
 @main.route('/update_LCdata', methods=['POST'])
 def updateLCdata():
+	TDSession.login()
 	LCticklist=['DIS','TSLA','AMZN','MSFT'] #ticker list
 	LCdata = TDSession.get_quotes(instruments=LCticklist)
 	LCdata_list=[]
