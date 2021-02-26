@@ -4,7 +4,7 @@ from . import db, TDSession
 from .models import User
 from .check import ef3count
 from dotenv import load_dotenv
-from datetime import date, time
+from datetime import date
 import os
 TDSession.login()
 basedir = os.path.abspath(os.path.dirname(__file__))
