@@ -24,6 +24,20 @@ nav.upper-navbar {
   );
 }
 
+#navbar-title{
+  color: rgb(80, 80, 80);
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 3px #000000, 0 0 4px #000000, 0 0 5px #000000, 0 0 6px #000000, 0 0 7px #000000;
+  }
+
+  to {
+    text-shadow: 0 0 2px #fff, 0 0 3px #000000, 0 0 4px #000000, 0 0 5px #000000, 0 0 6px #000000, 0 0 7px #000000, 0 0 8px #000000;
+  }
+}
+
 #myTab {
   justify-content: center;
 }
@@ -38,7 +52,12 @@ li {
     0.5px 0.5px 0 rgb(54, 54, 54), 0.5px 0.5px 0 rgb(54, 54, 54);
   color: white;
   font-size: 35px;
+      text-align: center;
+      -webkit-animation: glow 1s ease-in-out infinite alternate;
+      -moz-animation: glow 1s ease-in-out infinite alternate;
+      animation: glow 1s ease-in-out infinite alternate;
 }
+
 .upper-navbar-brand {
   padding-top: 1em;
   text-align: center;
@@ -61,6 +80,7 @@ footer {
 
 #navbar {
   background-color: rgb(255, 255, 255);
+  
 }
 
 hr {
@@ -209,3 +229,4 @@ div.card-red {
   background-color: rgb(24, 121, 58);
   /* Add a dark-grey background on hover */
 }
+

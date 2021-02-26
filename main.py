@@ -4,6 +4,7 @@ from . import db, TDSession
 from .models import User
 from .check import ef3count
 from dotenv import load_dotenv
+from datetime import date, time
 import os
 TDSession.login()
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -39,7 +40,10 @@ def index():
 		PSdata_list.append(PSdata[tick])
 	PSdata=PSdata_list
  
-	return render_template("/main/index.html",  LCdata=LCdata, MCdata=MCdata, PSdata=PSdata)
+	today = date.today()
+	today=today.strftime("%m/%d/%Y")
+ 
+	return render_template("/main/index.html",  LCdata=LCdata, MCdata=MCdata, PSdata=PSdata, date=today)
 
 #portfolio page route - GET
 @main.route('/portfolio')
@@ -47,14 +51,18 @@ def index():
 def portfolio():
 	TDSession.login()
 	data = TDSession.get_accounts(account='all', fields=['positions'])
-	return render_template('/main/portfolio.html', name=current_user.first_name, data=data)
+	today = date.today()
+	today=today.strftime("%m/%d/%Y")
+	return render_template('/main/portfolio.html', name=current_user.first_name, data=data, date=today)
 
 #settings pages route - GET
 @main.route('/settings')
 @login_required
 def settings():
  user=User.query.filter_by(email = current_user.email).first()
- return render_template('/main/settings.html', current_user=user)
+ today = date.today()
+ today = today.strftime("%m/%d/%Y") 
+ return render_template('/main/settings.html', current_user=user, date=today)
 
 #settings subroute "edit_profile" - POST & GET
 @main.route('/settings/edit_profile', methods=['POST', 'GET'])
