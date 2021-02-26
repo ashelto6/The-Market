@@ -15,18 +15,44 @@ body {
   line-height: 1.2;
   text-transform: uppercase;
 }
+
 nav.upper-navbar {
   height: 5rem !important;
-  background-image: linear-gradient(
-    to right,
-    rgb(32, 188, 86),
-    rgb(238, 238, 80)
-  );
+  background-image: linear-gradient(to right,
+      rgb(32, 188, 86),
+      rgb(238, 238, 80));
 }
 
-#navbar-title{
-  color: rgb(80, 80, 80);
+@media screen and (min-width: 1088px) {
+  .navbar-end {
+    justify-content: flex-end;
+    margin-left: 102px;
+  }
 }
+
+#navbar-title {
+  color: rgb(75, 75, 75);
+  margin-right: 100px;
+}
+
+
+#nav-shad {
+  border-bottom: 3px rgb(0, 0, 0, 0.15) solid;
+}
+
+.navbar {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: center;
+  padding: .5rem 1rem;
+}
+
 
 @-webkit-keyframes glow {
   from {
@@ -52,10 +78,10 @@ li {
     0.5px 0.5px 0 rgb(54, 54, 54), 0.5px 0.5px 0 rgb(54, 54, 54);
   color: white;
   font-size: 35px;
-      text-align: center;
-      -webkit-animation: glow 1s ease-in-out infinite alternate;
-      -moz-animation: glow 1s ease-in-out infinite alternate;
-      animation: glow 1s ease-in-out infinite alternate;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
 }
 
 .upper-navbar-brand {
@@ -65,7 +91,7 @@ li {
   width: 100%;
 }
 
-.upper-navbar .upper-navbar-brand > .upper-navbar-item,
+.upper-navbar .upper-navbar-brand>.upper-navbar-item,
 .upper-navbar .upper-navbar-brand .upper-navbar-link {
   display: inline-block;
 }
@@ -80,7 +106,7 @@ footer {
 
 #navbar {
   background-color: rgb(255, 255, 255);
-  
+
 }
 
 hr {
@@ -229,4 +255,3 @@ div.card-red {
   background-color: rgb(24, 121, 58);
   /* Add a dark-grey background on hover */
 }
-
