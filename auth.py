@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from .models import User
 from .check import ef5count
+from datetime import date
 from . import db
 
 auth = Blueprint('auth', __name__)
@@ -13,7 +14,9 @@ auth = Blueprint('auth', __name__)
 def login():
   if current_user:
     logout_user()
-  return render_template('/auth/login.html')
+  today = date.today()
+  today=today.strftime("%m/%d/%Y")
+  return render_template('/auth/login.html', date=today)
 
 #login page route - POST
 @auth.route('/login', methods=['POST'])
@@ -35,7 +38,9 @@ def login_post():
 #signup page route - GET
 @auth.route('/signup')
 def signup():
-  return render_template('/auth/signup.html')
+  today = date.today()
+  today=today.strftime("%m/%d/%Y")
+  return render_template('/auth/signup.html', date=today)
 
 #signup page route - POST
 @auth.route('/signup', methods = ['POST'])
