@@ -6,6 +6,7 @@ content %} {% with messages = get_flashed_messages() %} {% if messages %}
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <br />
 <div class="container">
+  <h1 id="page-title">Tony's Long-Term Portfolio</h1>
   <div class="col mb-4">
     <!-- this block is shown on regular to large screens -->
     <div id="page">
@@ -32,14 +33,14 @@ content %} {% with messages = get_flashed_messages() %} {% if messages %}
                     <div class="card card-body">
                       <div class="container">
                         <p>
-                          <small><b>Average PPS</b>:
+                          <small><b>Avg. PPS</b>:
                             {{"$%.2f"|format(ticker.averagePrice)}}</small>
                         </p>
                         <p>
                           <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                         </p>
                         <p>
-                          <small><b>Position Worth</b>:
+                          <small><b>Net Worth</b>:
                             {{"$%.2f"|format(ticker.marketValue)}}</small>
                         </p>
                       </div>
@@ -60,14 +61,14 @@ content %} {% with messages = get_flashed_messages() %} {% if messages %}
                     <div class="card card-body">
                       <div class="container">
                         <p>
-                          <small><b>Average PPS</b>:
+                          <small><b>Avg. PPS</b>:
                             {{"$%.2f"|format(ticker.averagePrice)}}</small>
                         </p>
                         <p>
                           <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                         </p>
                         <p>
-                          <small><b>Position Worth</b>:
+                          <small><b>Net Worth</b>:
                             {{"$%.2f"|format(ticker.marketValue)}}</small>
                         </p>
                       </div>
@@ -86,14 +87,14 @@ content %} {% with messages = get_flashed_messages() %} {% if messages %}
                     <div class="card card-body">
                       <div class="container">
                         <p>
-                          <small><b>Average PPS</b>:
+                          <small><b>Avg PPS</b>:
                             {{"$%.2f"|format(ticker.averagePrice)}}</small>
                         </p>
                         <p>
                           <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                         </p>
                         <p>
-                          <small><b>Position Worth</b>:
+                          <small><b>Net Worth</b>:
                             {{"$%.2f"|format(ticker.marketValue)}}</small>
                         </p>
                       </div>
@@ -109,7 +110,12 @@ content %} {% with messages = get_flashed_messages() %} {% if messages %}
       </div>
 
       <div class="menuleftcontent">
-        <ul id="menu"></ul>
+        <ul id="menu">
+          <li><a href="#"><button>Menu</button></a></li>
+          <li><a href="#"><button>will</button></a></li>
+          <li><a href="#"><button>go</button></a></li>
+          <li><a href="#"><button>here</button></a></li>
+        </ul>
       </div>
       <div id="clearingdiv"></div>
     </div>
@@ -143,14 +149,14 @@ content %} {% with messages = get_flashed_messages() %} {% if messages %}
                   <div class="collapse" id="{{ ticker.instrument.symbol }}P">
                     <div class="card card-body">
                       <p>
-                        <small><b>Average PPS</b>:
+                        <small><b>Avg. PPS</b>:
                           {{"$%.2f"|format(ticker.averagePrice)}}</small>
                       </p>
                       <p>
                         <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                       </p>
                       <p>
-                        <small><b>Position Worth</b>:
+                        <small><b>Net Worth</b>:
                           {{"$%.2f"|format(ticker.marketValue)}}</small>
                       </p>
                     </div>
@@ -178,14 +184,14 @@ content %} {% with messages = get_flashed_messages() %} {% if messages %}
                   <div class="collapse" id="{{ ticker.instrument.symbol }}P">
                     <div class="card card-body">
                       <p>
-                        <small><b>Average PPS</b>:
+                        <small><b>Avg. PPS</b>:
                           {{"$%.2f"|format(ticker.averagePrice)}}</small>
                       </p>
                       <p>
                         <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                       </p>
                       <p>
-                        <small><b>Position Worth</b>:
+                        <small><b>Net Worth</b>:
                           {{"$%.2f"|format(ticker.marketValue)}}</small>
                       </p>
                     </div>
@@ -211,14 +217,14 @@ content %} {% with messages = get_flashed_messages() %} {% if messages %}
                   <div class="collapse" id="{{ ticker.instrument.symbol }}P">
                     <div class="card card-body">
                       <p>
-                        <small><b>Average PPS</b>:
+                        <small><b>Avg. PPS</b>:
                           {{"$%.2f"|format(ticker.averagePrice)}}</small>
                       </p>
                       <p>
                         <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
                       </p>
                       <p>
-                        <small><b>Position Worth</b>:
+                        <small><b>Net Worth</b>:
                           {{"$%.2f"|format(ticker.marketValue)}}</small>
                       </p>
                     </div>
