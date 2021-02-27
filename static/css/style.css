@@ -23,7 +23,13 @@ nav.upper-navbar {
       rgb(238, 238, 80));
 }
 
-@media screen and (min-width: 1088px) {
+@media screen and (min-width: 1200px) {
+  .navbar {
+    min-height: 3.25rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
   .navbar-end {
     justify-content: flex-end;
     margin-left: 102px;
