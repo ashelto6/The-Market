@@ -32,7 +32,7 @@ nav.upper-navbar {
 @media screen and (min-width: 1200px) {
   .navbar-end {
     justify-content: flex-end;
-    margin-left: 102px;
+    margin-left: 100px;
   }
 }
 
@@ -59,8 +59,7 @@ nav.upper-navbar {
   padding: .5rem 1rem;
 }
 
-
-@-webkit-keyframes glow {
+@keyframes glow {
   from {
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 3px #000000, 0 0 4px #000000, 0 0 5px #000000, 0 0 6px #000000, 0 0 7px #000000;
   }
