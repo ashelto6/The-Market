@@ -15,7 +15,6 @@ main = Blueprint('main', __name__)
 @main.route('/')
 @main.route('/home')
 def index():
-	TDSession.login()
 	#for large cap data 
 	LCticklist=['DIS','TSLA','AMZN','MSFT'] #ticker list
 	LCdata = TDSession.get_quotes(instruments=LCticklist)
@@ -49,7 +48,6 @@ def index():
 @main.route('/portfolio')
 @login_required
 def portfolio():
-	TDSession.login()
 	data = TDSession.get_accounts(account='all', fields=['positions'])
 	today = date.today()
 	today=today.strftime("%m/%d/%Y")
