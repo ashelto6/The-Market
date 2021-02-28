@@ -143,7 +143,7 @@ hr {
   margin-left: 200px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 995px) {
   .menuleftcontent {
     display: none;
   }
@@ -178,7 +178,7 @@ hr {
   width: 205px;
   height: 20%;
   position: sticky;
-  margin-left: -205px;
+  margin-left: -245px;
   padding: 20px;
 }
 
