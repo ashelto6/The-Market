@@ -219,7 +219,7 @@ div.card-red {
   margin-left: auto;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
   .container-home {
     width: 650px;
   }
