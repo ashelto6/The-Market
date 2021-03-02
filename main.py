@@ -32,7 +32,7 @@ def index():
 	MCdata=MCdata_list
 	
 	#for penny cap data
-	PSticklist=['AMC','ZOM','AEZS'] #ticker list 
+	PSticklist=['AMC','INPX','ZOM'] #ticker list 
 	PSdata = TDSession.get_quotes(instruments=PSticklist)
 	PSdata_list=[]
 	for tick in PSticklist:
@@ -102,7 +102,7 @@ def edit_profile():
 @main.route('/update_PSdata', methods=['POST'])
 def updatePSdata():
 	TDSession.login()
-	PSticklist=['AMC','ZOM','AEZS'] #ticker list
+	PSticklist=['AMC','INPX','ZOM'] #ticker list
 	PSdata = TDSession.get_quotes(instruments=PSticklist)
 	PSdata_list=[]
 	for tick in PSticklist:
