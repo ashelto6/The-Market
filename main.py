@@ -53,6 +53,24 @@ def portfolio():
 	today = date.today()
 	today=today.strftime("%m/%d/%Y")
 	return render_template('/main/portfolio.html', name=current_user.first_name, data=data, date=today)
+ 
+@main.route('/watchlist')
+def watchlist():
+	TDSession.login()
+	data = TDSession.get_watchlist(account=os.environ.get('TD'), watchlist_id=os.environ.get('TDWL'))
+	WLTickers = []
+	for ticker in data['watchlistItems']:
+		WLTickers.append(ticker['instrument']['symbol'])
+	WLdata = TDSession.get_quotes(instruments=WLTickers)
+ 
+	WLdata_list=[]
+	for tick in WLTickers:
+		WLdata_list.append(WLdata[tick])
+	WLdata=WLdata_list
+ 
+	today = date.today()
+	today=today.strftime("%m/%d/%Y")
+	return render_template('/main/watchlist.html', WLdata=WLdata, date=today)
 
 #settings pages route - GET
 @main.route('/settings')
