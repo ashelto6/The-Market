@@ -54,6 +54,7 @@ def portfolio():
 	today=today.strftime("%m/%d/%Y")
 	return render_template('/main/portfolio.html', name=current_user.first_name, data=data, date=today)
  
+#watchlist page route - GET
 @main.route('/watchlist')
 def watchlist():
 	TDSession.login()
