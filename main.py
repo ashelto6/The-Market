@@ -23,7 +23,7 @@ def index():
 	LCdata=LCdata_list
 
 	#for mid cap data
-	MCticklist=['GME','RIOT','JMIA'] #ticker list 
+	MCticklist=['RBLX','GME','RIOT'] #ticker list 
 	MCdata = TDSession.get_quotes(instruments=MCticklist)
 	MCdata_list=[]
 	for tick in MCticklist:
@@ -99,7 +99,7 @@ def updatePSdata():
 @main.route('/update_MCdata', methods=['POST'])
 def updateMCdata():
 	TDSession.login()
-	MCticklist=['GME','RIOT','JMIA'] #ticker list
+	MCticklist=['RBLX','GME','RIOT'] #ticker list
 	MCdata = TDSession.get_quotes(instruments=MCticklist)
 	MCdata_list=[]
 	for tick in MCticklist:
