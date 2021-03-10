@@ -1,3 +1,4 @@
+#programmer defined validation checks
 
 def ef5count(field1, field2, field3, field4, field5): #counts how many of 5 fields are empty - return int
   credentials = [field1, field2, field3, field4, field5]
