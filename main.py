@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, redirect, request, url_for, flash,
 from flask_login import login_required, current_user
 from . import db, TDSession
 from .models import User
-from .check import ef3count
 from dotenv import load_dotenv
 from datetime import date
 import os
@@ -81,39 +80,6 @@ def settings():
  today = date.today()
  today = today.strftime("%m/%d/%Y") 
  return render_template('/main/settings.html', current_user=user, date=today)
-
-#settings subroute "edit_profile" - POST & GET
-@main.route('/settings/edit_profile', methods=['POST', 'GET'])
-@login_required
-def edit_profile():
- 
- if request.method == 'GET':
-  return redirect(url_for('main.settings'))
- 
- first_name=request.form.get('first name')
- last_name = request.form.get('last name')
- email = request.form.get('email').lower()
- user = User.query.filter_by(email=email).first()
- 
- if first_name == current_user.first_name and last_name == current_user.last_name and email == current_user.email:
-  return redirect(url_for('main.settings'))
- 
- if email != current_user.email and user:
-  flash('That email is taken.')
-  return redirect(url_for('main.settings'))
- 
- empty_fields = ef3count(first_name, last_name, email)
- if empty_fields > 0:
-  flash('Please enter a value for each field.')
-  return redirect(url_for('main.settings'))
- 
- current_user.first_name = first_name
- current_user.last_name = last_name
- current_user.email = email
- db.session.commit()
- 
- flash('Account Successfully Updated!')
- return redirect(url_for('main.settings'))
 
 ######################################### AJAX ROUTES ##############################################
 
