@@ -13,7 +13,6 @@ main = Blueprint('main', __name__)
 @main.route('/')
 @main.route('/home')
 def index():
-	TDSession.login()
 	#for large cap data 
 	LCticklist=['DIS','TSLA','AMZN','MSFT'] #ticker list
 	LCdata = TDSession.get_quotes(instruments=LCticklist)
@@ -47,7 +46,6 @@ def index():
 @main.route('/portfolio')
 @login_required
 def portfolio():
-	TDSession.login()
 	data = TDSession.get_accounts(account='all', fields=['positions'])
 	today = date.today()
 	today=today.strftime("%m/%d/%Y")
@@ -56,7 +54,6 @@ def portfolio():
 #watchlist page route - GET
 @main.route('/watchlist')
 def watchlist():
-	TDSession.login()
 	data = TDSession.get_watchlist(account=os.environ.get('TD'), watchlist_id=os.environ.get('TDWL'))
 	WLTickers = []
 	for ticker in data['watchlistItems']:
@@ -86,7 +83,6 @@ def settings():
 #PSData AJAX route - POST
 @main.route('/update_PSdata', methods=['POST'])
 def updatePSdata():
-	TDSession.login()
 	PSticklist=['AMC','INPX','ZOM'] #ticker list
 	PSdata = TDSession.get_quotes(instruments=PSticklist)
 	PSdata_list=[]
@@ -98,7 +94,6 @@ def updatePSdata():
 #MCdata AJAX route - POST
 @main.route('/update_MCdata', methods=['POST'])
 def updateMCdata():
-	TDSession.login()
 	MCticklist=['RBLX','GME','RIOT'] #ticker list
 	MCdata = TDSession.get_quotes(instruments=MCticklist)
 	MCdata_list=[]
@@ -110,7 +105,6 @@ def updateMCdata():
 #LCdata AJAX route - POST
 @main.route('/update_LCdata', methods=['POST'])
 def updateLCdata():
-	TDSession.login()
 	LCticklist=['DIS','TSLA','AMZN','MSFT'] #ticker list
 	LCdata = TDSession.get_quotes(instruments=LCticklist)
 	LCdata_list=[]

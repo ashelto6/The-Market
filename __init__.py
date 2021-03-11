@@ -13,6 +13,7 @@ TDSession = TDClient(
  redirect_uri=os.environ.get('REDIRECT_URI'),
  credentials_path=os.environ.get('CREDENTIALS_PATH')
 )
+TDSession.login()
 
 db = SQLAlchemy()
 
