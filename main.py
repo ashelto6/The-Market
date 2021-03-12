@@ -14,7 +14,10 @@ main = Blueprint('main', __name__)
 @main.route('/home')
 def index():
 	#for large cap data 
-	LCticklist=['DIS','TSLA','AMZN','MSFT'] #ticker list
+	my_file = open("symbols/largecaps.txt")
+	content = my_file.read()
+	LCticklist = content.split(", ")
+	my_file.close()
 	LCdata = TDSession.get_quotes(instruments=LCticklist)
 	LCdata_list=[]
 	for tick in LCticklist:
@@ -22,7 +25,10 @@ def index():
 	LCdata=LCdata_list
 
 	#for mid cap data
-	MCticklist=['RBLX','GME','RIOT'] #ticker list 
+	my_file = open("symbols/midcaps.txt")
+	content = my_file.read()
+	MCticklist = content.split(", ")
+	my_file.close()
 	MCdata = TDSession.get_quotes(instruments=MCticklist)
 	MCdata_list=[]
 	for tick in MCticklist:
@@ -30,7 +36,10 @@ def index():
 	MCdata=MCdata_list
 	
 	#for penny cap data
-	PSticklist=['AMC','INPX','ZOM'] #ticker list 
+	my_file = open("symbols/smallcaps.txt")
+	content = my_file.read()
+	PSticklist = content.split(", ")
+	my_file.close()
 	PSdata = TDSession.get_quotes(instruments=PSticklist)
 	PSdata_list=[]
 	for tick in PSticklist:
@@ -83,7 +92,10 @@ def settings():
 #PSData AJAX route - POST
 @main.route('/update_PSdata', methods=['POST'])
 def updatePSdata():
-	PSticklist=['AMC','INPX','ZOM'] #ticker list
+	my_file = open("symbols/smallcaps.txt")
+	content = my_file.read()
+	PSticklist = content.split(", ")
+	my_file.close()
 	PSdata = TDSession.get_quotes(instruments=PSticklist)
 	PSdata_list=[]
 	for tick in PSticklist:
@@ -94,7 +106,10 @@ def updatePSdata():
 #MCdata AJAX route - POST
 @main.route('/update_MCdata', methods=['POST'])
 def updateMCdata():
-	MCticklist=['RBLX','GME','RIOT'] #ticker list
+	my_file = open("symbols/midcaps.txt")
+	content = my_file.read()
+	MCticklist = content.split(", ")
+	my_file.close()
 	MCdata = TDSession.get_quotes(instruments=MCticklist)
 	MCdata_list=[]
 	for tick in MCticklist:
@@ -105,7 +120,10 @@ def updateMCdata():
 #LCdata AJAX route - POST
 @main.route('/update_LCdata', methods=['POST'])
 def updateLCdata():
-	LCticklist=['DIS','TSLA','AMZN','MSFT'] #ticker list
+	my_file = open("symbols/largecaps.txt")
+	content = my_file.read()
+	LCticklist = content.split(", ")
+	my_file.close()
 	LCdata = TDSession.get_quotes(instruments=LCticklist)
 	LCdata_list=[]
 	for tick in LCticklist:
