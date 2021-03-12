@@ -135,9 +135,3 @@ dt.py
 
 #TDA
 token
-
-
-#symbols files
-symbols/smallcaps.txt
-symbols/midcaps.txt
-symbols/largecaps.txt
