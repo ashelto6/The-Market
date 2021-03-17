@@ -14,6 +14,7 @@
       <div class="maincontent">
         <div class="container">
           <div class="text-center">
+            <span id="update_Portfoliodata">
             <div class="row row-cols-1 row-cols-md-2">
               {% for ticker in
               data[0].securitiesAccount.positions|sort(attribute='marketValue',
@@ -106,6 +107,7 @@
               </div>
               {% endfor %}
             </div>
+            </span>
           </div>
         </div>
       </div>
@@ -245,6 +247,24 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
+/* Ajax */
+  $(function () {
+    window.setInterval(function () {
+      loadNewPortfoliodata()
+    }, 2500)
+
+    function loadNewPortfoliodata() {
+      $.ajax({
+        url: "/update_Portfoliodata",
+        type: "POST",
+        dataType: "json",
+        success: function (data) {
+          $(update_Portfoliodata).replaceWith(data)
+        }
+
+      });
+    }
+  });
   /* back to top button */
   mybutton = document.getElementById("myBtn");
 

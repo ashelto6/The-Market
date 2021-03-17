@@ -131,4 +131,11 @@ def updateLCdata():
 	LCdata=LCdata_list
 	return jsonify('', render_template('/ajax/update_LCdata_model.html', LCdata=LCdata))
 
+@main.route('/update_Portfoliodata', methods=['POST'])
+def updatePortfoliodata():
+	data = TDSession.get_accounts(account='all', fields=['positions'])
+	today = date.today()
+	today=today.strftime("%m/%d/%Y")
+	return render_template('/ajax/update_Portfoliodata_model.html', data=data)
+
 #######################################################################################
