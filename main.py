@@ -92,6 +92,7 @@ def settings():
 #PSData AJAX route - POST
 @main.route('/update_PSdata', methods=['POST'])
 def updatePSdata():
+	TDSession.login()
 	my_file = open("symbols/smallcaps.txt")
 	content = my_file.read()
 	PSticklist = content.split(", ")
@@ -106,6 +107,7 @@ def updatePSdata():
 #MCdata AJAX route - POST
 @main.route('/update_MCdata', methods=['POST'])
 def updateMCdata():
+	TDSession.login()
 	my_file = open("symbols/midcaps.txt")
 	content = my_file.read()
 	MCticklist = content.split(", ")
@@ -120,6 +122,7 @@ def updateMCdata():
 #LCdata AJAX route - POST
 @main.route('/update_LCdata', methods=['POST'])
 def updateLCdata():
+	TDSession.login()
 	my_file = open("symbols/largecaps.txt")
 	content = my_file.read()
 	LCticklist = content.split(", ")
@@ -131,13 +134,17 @@ def updateLCdata():
 	LCdata=LCdata_list
 	return jsonify('', render_template('/ajax/update_LCdata_model.html', LCdata=LCdata))
 
+#Portfolio AJAX route 
 @main.route('/update_Portfoliodata', methods=['POST'])
 def updatePortfoliodata():
+	TDSession.login()
 	data = TDSession.get_accounts(account='all', fields=['positions'])
 	return jsonify('', render_template('/ajax/update_Portfoliodata_model.html', data=data))
 
+#Portfolio(small devices) AJAX route
 @main.route('/update_Portfoliodata_sm', methods=['POST'])
 def updatePortfoliodatasm():
+	TDSession.login()
 	data = TDSession.get_accounts(account='all', fields=['positions'])
 	return jsonify('', render_template('/ajax/update_Portfoliodata_sm_model.html', data=data))
 #######################################################################################
