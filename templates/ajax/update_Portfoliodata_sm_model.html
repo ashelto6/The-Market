@@ -1,0 +1,96 @@
+          <span id="update_Portfoliodata_sm">
+            {% for ticker in
+      data[0].securitiesAccount.positions|sort(attribute='marketValue',
+      reverse=True) %}
+            <div class="container">
+              <div class="text-center">
+                <div class="row row-cols-1 row-cols-md-2">
+                  <div class="col mb-4">
+                    {% if "%.2f"|format(ticker.marketValue/ticker.longQuantity)|float
+              < "%.2f"|format(ticker.averagePrice)|float %}
+
+                    <div class="card card-red">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ticker.instrument.symbol}}</h5>
+                        <p>
+                          <b>Current Price</b>: {{
+                    "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
+                        </p>
+
+
+                        <div class="card card-body">
+                          <p>
+                            <small><b>Avg. PPS</b>:
+                              {{"$%.2f"|format(ticker.averagePrice)}}</small>
+                          </p>
+                          <p>
+                            <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
+                          </p>
+                          <p>
+                            <small><b>Net Worth</b>:
+                              {{"$%.2f"|format(ticker.marketValue)}}</small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {% elif
+              "%.2f"|format(ticker.marketValue/ticker.longQuantity)|float >
+              "%.2f"|format(ticker.averagePrice)|float %}
+
+                    <div class="card card-green">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ticker.instrument.symbol}}</h5>
+                        <p>
+                          <b>Current Price</b>: {{
+                    "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
+                        </p>
+
+                        <div class="card card-body">
+                          <p>
+                            <small><b>Avg. PPS</b>:
+                              {{"$%.2f"|format(ticker.averagePrice)}}</small>
+                          </p>
+                          <p>
+                            <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
+                          </p>
+                          <p>
+                            <small><b>Net Worth</b>:
+                              {{"$%.2f"|format(ticker.marketValue)}}</small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {% else %}
+
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ticker.instrument.symbol}}</h5>
+                        <p>
+                          <b>Current Price</b>: {{
+                    "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
+                        </p>
+
+                        <div class="card card-body">
+                          <p>
+                            <small><b>Avg. PPS</b>:
+                              {{"$%.2f"|format(ticker.averagePrice)}}</small>
+                          </p>
+                          <p>
+                            <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
+                          </p>
+                          <p>
+                            <small><b>Net Worth</b>:
+                              {{"$%.2f"|format(ticker.marketValue)}}</small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </span>
