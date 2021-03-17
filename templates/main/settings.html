@@ -186,10 +186,10 @@
   </a>
 
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#exampleModal">
-  Delete Account
-</button>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#exampleModal">
+      Delete Account
+    </button>
   </div>
 </div>
 
@@ -209,7 +209,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <form method="POST" action="/settings/delete_account">
-        <button class="btn btn-danger">Delete Account</button>
+          <button class="btn btn-danger">Delete Account</button>
         </form>
       </div>
     </div>
@@ -217,9 +217,5 @@
 </div>
 <br><br><br>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 {% endblock %}
