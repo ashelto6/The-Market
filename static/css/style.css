@@ -1,5 +1,7 @@
 body {
   background-color: rgb(245, 245, 245);
+  padding-right: 0px !important;
+  margin-right: 0px !important;
 }
 
 * {
