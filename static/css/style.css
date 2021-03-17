@@ -155,7 +155,7 @@ hr {
   }
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 995px) {
   .maincontent-sm {
     display: none;
   }
