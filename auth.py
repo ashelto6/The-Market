@@ -126,3 +126,13 @@ def edit_profile():
 
   flash('Account Successfully Updated!')
   return redirect(url_for('main.settings'))
+
+#settings subroute "delete account" - POST & GET
+@auth.route('/settings/delete_account', methods=['POST', 'GET'])
+@login_required
+def delete_account():
+  if request.method == 'GET':
+    return redirect(url_for('main.settings'))
+    
+  flash("Delete Account hasn't been set up yet.")
+  return redirect(url_for('main.settings'))
