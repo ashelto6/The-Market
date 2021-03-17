@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block uppertitle %} SETTINGS {% endblock %}
 {% block title %} Settings {% endblock %}
 {% block date %} {{date}} {% endblock %}
 {% block content %}
@@ -12,7 +12,6 @@
 {% endif %}
 {% endwith %}
 <br>
-<h1 id="page-title">Settings</h1>
 <!-- large screen view -->
 <div id="page">
   <div class="tab-content">
@@ -83,7 +82,6 @@
       </div>
     </div>
   </div>
-
   <!-- large screen left menu -->
   <div class="menuleftcontent">
     <ul class="nav nav-tabs" id="myTab-settings menu" role="tablist">
@@ -179,7 +177,18 @@
     </div>
   </div>
 </div>
-<br><br> <br><br> <br><br><br><br><br><br>
+
+<br><br>
+<div class="dropdown ">
+  <a class="btn btn-warning dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    More
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Delete Account</a>
+  </div>
+</div>
+<br><br><br>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 {% endblock %}
