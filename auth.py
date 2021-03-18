@@ -133,6 +133,9 @@ def edit_profile():
 def delete_account():
   if request.method == 'GET':
     return redirect(url_for('main.settings'))
-    
-  flash("Delete Account hasn't been set up yet.")
-  return redirect(url_for('main.settings'))
+  
+  if current_user:
+    db.session.delete(current_user)
+    db.session.commit()
+  flash("Your account has been permanently deleted.")
+  return redirect(url_for('main.index'))
