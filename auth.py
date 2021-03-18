@@ -108,6 +108,7 @@ def edit_profile():
   user = User.query.filter_by(email=email).first()
 
   if first_name == current_user.first_name and last_name == current_user.last_name and email == current_user.email:
+    flash('No changes were found.')
     return redirect(url_for('main.settings'))
 
   if email != current_user.email and user:
