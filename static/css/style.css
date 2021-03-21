@@ -18,6 +18,14 @@ body {
   text-transform: uppercase;
 }
 
+#nav-item-color, #footer-item-color{
+  color: #000000;
+}
+
+.navbar-start{
+  justify-content: center;
+}
+
 nav.upper-navbar {
   height: 5rem !important;
   background-image: linear-gradient(to right,
@@ -59,6 +67,15 @@ nav.upper-navbar {
   -ms-flex-pack: justify;
   justify-content: center;
   padding: .5rem 1rem;
+}
+
+.footer-item{
+  margin: 4px;
+}
+
+#footer-p{
+  font-size: x-small;
+  margin-bottom: 0;
 }
 
 @keyframes glow {
@@ -233,7 +250,7 @@ div.card-red {
   /* Hidden by default */
   position: fixed;
   /* Fixed/sticky position */
-  bottom: 50px;
+  bottom: 90px;
   /* Place the button at the bottom of the page */
   right: 30px;
   /* Place the button 30px from the right */
@@ -249,11 +266,11 @@ div.card-red {
   /* Text color */
   cursor: pointer;
   /* Add a mouse pointer on hover */
-  padding: 15px;
+  padding: 5px;
   /* Some padding */
   border-radius: 10px;
   /* Rounded corners */
-  font-size: 18px;
+  font-size: 15px;
   /* Increase font size */
 }
 

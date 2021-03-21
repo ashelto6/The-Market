@@ -33,7 +33,7 @@
                     <b><big><strong><span id="navbar-title"> {% block date %} {% endblock %}
                                 </span></strong></big></b>
                 </span>
-                <a style="color: black;" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                <a id="nav-item-color" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
                     data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -53,29 +53,29 @@
                                 </svg>
                             </a>
 
-                            <a style="color: black;" href="{{ url_for('main.portfolio') }}" class="navbar-item">
+                            <a id="nav-item-color" href="{{ url_for('main.portfolio') }}" class="navbar-item">
                                 Portfolio
                             </a>
-                            <a style="color: black;" href="{{ url_for('main.watchlist') }}" class="navbar-item">
+                            <a id="nav-item-color" href="{{ url_for('main.watchlist') }}" class="navbar-item">
                                 Watchlist
                             </a>
-                            <a style="color: black;" href="#" class="navbar-item">
+                            <a id="nav-item-color" href="#" class="navbar-item">
                                 News
                             </a>
-                            <a style="color: black;" href="#" class="navbar-item">
+                            <a id="nav-item-color" href="#" class="navbar-item">
                                 Movers
                             </a>
-                            <a style="color: black;" href="#" class="navbar-item">
+                            <a id="nav-item-color" href="#" class="navbar-item">
                                 Education
                             </a>
-                            <a style="color: black;" href="#" class="navbar-item">
+                            <a id="nav-item-color" href="#" class="navbar-item">
                                 About Us
                             </a>
-                            <a style="color: black;" href="#" class="navbar-item">
+                            <a id="nav-item-color" href="#" class="navbar-item">
                                 Support
                             </a>
                             {% if current_user.is_authenticated %}
-                            <a style="color: black;" href="{{url_for('main.settings')}}" class="navbar-item">
+                            <a id="nav-item-color" href="{{url_for('main.settings')}}" class="navbar-item">
                                 Settings
                             </a>
                             {% endif %}
@@ -89,7 +89,7 @@
                                     <a href="{{ url_for('auth.signup') }}" class="button is-warning">
                                         <strong>Sign up</strong>
                                     </a>
-                                    <a style="color: black;" href="{{ url_for('auth.login') }}">
+                                    <a id="nav-item-color" href="{{ url_for('auth.login') }}">
                                         <strong>Log in</strong>
                                     </a>
                                     {% endif %}
@@ -130,14 +130,41 @@
             });
         });
     </script>
+    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+
     <footer class="text-center">
         <hr>
-        <p>footer</p>
-        <p><a href="mailto:hege@example.com">hege@example.com</a></p>
+        <br>
+        <br>
+        <div class="container">
+            <h5><b>THE MARKET</b></h5>
+            <p id="footer-p"><b>CONNECT</b></p>
+        <div class="elfsight-app-b87d068d-2725-4488-9363-e3d6fac32304"></div>
+            <p><b>---</b></p>
+            <div class="text-center">
+                <a id="footer-item-color" class="footer-item" href="{{ url_for('main.watchlist') }}">
+                    Watchlist
+                </a>
+                <a id="footer-item-color" class="footer-item" href="#">
+                    News
+                </a>
+                <a id="footer-item-color" class="footer-item" href="#">
+                    Education
+                </a>
+                <a id="footer-item-color" class="footer-item" href="#">
+                    About Us
+                </a>
+                <a id="footer-item-color" class="footer-item" href="#">
+                    Support
+                </a>
+                <a id="footer-item-color" class="footer-item" href="#">
+                    Donate
+                </a>
+            </div>
 
-        <span class="text-left">
-            <p>copyright © 2021</p>
-        </span>
+            <p id="footer-p">© 2021 Tony's Code | All Rights Reserved.</p>
+            <br>
+        </div>
     </footer>
 </body>
 
