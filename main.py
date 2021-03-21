@@ -13,6 +13,7 @@ main = Blueprint('main', __name__)
 @main.route('/')
 @main.route('/home')
 def index():
+	TDSession.login()
 	#for large cap data 
 	my_file = open("symbols/largecaps.txt")
 	content = my_file.read()
@@ -55,6 +56,7 @@ def index():
 @main.route('/portfolio')
 @login_required
 def portfolio():
+	TDSession.login()
 	data = TDSession.get_accounts(account='all', fields=['positions'])
 	today = date.today()
 	today=today.strftime("%m/%d/%Y")
@@ -63,6 +65,7 @@ def portfolio():
 #watchlist page route - GET
 @main.route('/watchlist')
 def watchlist():
+	TDSession.login()
 	data = TDSession.get_watchlist(account=os.environ.get('TD'), watchlist_id=os.environ.get('TDWL'))
 	WLTickers = []
 	for ticker in data['watchlistItems']:
