@@ -169,3 +169,13 @@ def delete_account():
     db.session.commit()
   flash("Your account has been permanently deleted.")
   return redirect(url_for('main.index'))
+
+@auth.route('/reset_password_request', methods=['POST', 'GET'])
+def reset_password_request():
+  if request.method == 'GET':
+    today = date.today()
+    today=today.strftime("%m/%d/%Y")
+    return render_template('/auth/reset_password_request.html', date=today)
+
+  flash('Reset Password by email has not been set up yet.')
+  return redirect(url_for('auth.login'))
