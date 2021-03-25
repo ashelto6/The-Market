@@ -3,16 +3,17 @@
 {% block title %} Sign up {% endblock %}
 {% block date %} {{date}} {% endblock %}
 {% block content %}
-<br><br><br>
+<br><br>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="container notification is-danger">
+    {{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+<br>
 <div class="column is-4 is-offset-4">
     <div class="box">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div class="notification is-danger">
-            {{ messages[0] }}
-        </div>
-        {% endif %}
-        {% endwith %}
         <form method="POST" action="/signup">
 
             <div class="field">

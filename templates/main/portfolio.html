@@ -3,7 +3,7 @@
 {% block title %} Portfolio {% endblock %}
 {% block date %} {{date}} {% endblock %}
 {% block content %} {% with messages = get_flashed_messages() %} {% if messages %}
-<div class="notification is-success" id="marg">{{ messages[0] }}</div>
+<div class="container notification is-success" id="marg">{{ messages[0] }}</div>
 {% endif %} {% endwith %}
 
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
