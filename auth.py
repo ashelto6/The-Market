@@ -91,9 +91,38 @@ def logout():
 def change_password():
   if request.method == 'GET':
     return redirect(url_for('main.settings'))
-    
-  flash("Change Password hasn't been set up yet.")
-  return redirect(url_for('main.settings'))
+  
+  old_password = request.form.get('Old password')
+  new_password = request.form.get('New password')
+  new_password_again = request.form.get('New password again')
+  
+  empty_fields = ef3count(old_password, new_password, new_password_again)
+  if empty_fields > 0:
+    flash('Please enter a value for each password field.')
+    return redirect(url_for('main.settings'))
+  
+  if not check_password_hash(current_user.password, old_password):
+    flash('The current password you entered is incorrect.')
+    return redirect(url_for('main.settings'))
+  
+  policy = PasswordPolicy.from_names(strength=0.30)
+  err = policy.test(new_password)
+  if len(err) > 0:
+    flash('New password is not strong enough.')        
+    return redirect(url_for('main.settings'))
+  
+  if new_password != new_password_again:
+    flash("New passwords do not match.")
+    return redirect(url_for('main.settings'))
+  
+  if old_password == new_password:
+    flash('You entered the same password for your current password and your new password.')
+    return redirect(url_for('main.settings'))
+  
+  current_user.password=generate_password_hash(new_password, method='sha256')
+  db.session.commit()
+  flash("Password has been successfully changed! Login with your new password.")
+  return redirect(url_for('auth.login'))
 
 #settings subroute "edit_profile" - POST & GET
 @auth.route('/settings/edit_profile', methods=['POST', 'GET'])
