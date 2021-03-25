@@ -14,7 +14,6 @@ main = Blueprint('main', __name__)
 @main.route('/home')
 def index():
 	TDSession.login()
-	#for large cap data 
 	my_file = open("symbols/largecaps.txt")
 	content = my_file.read()
 	LCticklist = content.split(", ")
@@ -25,7 +24,6 @@ def index():
 		LCdata_list.append(LCdata[tick])
 	LCdata=LCdata_list
 
-	#for mid cap data
 	my_file = open("symbols/midcaps.txt")
 	content = my_file.read()
 	MCticklist = content.split(", ")
@@ -36,7 +34,6 @@ def index():
 		MCdata_list.append(MCdata[tick])
 	MCdata=MCdata_list
 	
-	#for penny cap data
 	my_file = open("symbols/smallcaps.txt")
 	content = my_file.read()
 	PSticklist = content.split(", ")
