@@ -137,11 +137,14 @@ footer {
 hr {
   border: none;
   height: .5px;
-  padding-bottom: 0;
-  margin-bottom: 0;
   /* Set the hr color */
   background-color: rgb(155, 155, 155);
   /* Modern Browsers */
+}
+
+#btm-hr{
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 #marg {
