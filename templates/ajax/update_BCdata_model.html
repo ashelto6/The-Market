@@ -1,6 +1,6 @@
-            <span id="update_MCdata">{% for ticker in MCdata %}
+            <span id="update_BCdata">{% for ticker in BCdata %}
               {% if ticker.lastPrice < ticker.closePrice %}
-              <!-- Mid: if red day -->
+              <!-- Large: if red day -->
               <div class="col mb-4">
                 <div class="card card-red">
                   <div class="card-body">
@@ -28,7 +28,7 @@
                 </div>
               </div>
               {% elif ticker.lastPrice > ticker.closePrice %}
-              <!-- Mid: if green day -->
+              <!-- Large: if green day -->
               <div class="col mb-4">
                 <div class="card card-green">
                   <div class="card-body">
@@ -56,7 +56,7 @@
                 </div>
               </div>
               {% else %}
-              <!-- Mid: if break even day -->
+              <!-- Large: if break even day -->
               <div class="col mb-4">
                 <div class="card">
                   <div class="card-body">
