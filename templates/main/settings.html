@@ -3,7 +3,7 @@
 {% block title %} Settings {% endblock %}
 {% block date %} {{date}} {% endblock %}
 {% block content %}
-<br>
+<br><br><br>
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 <div class="container notification is-warning">
@@ -11,7 +11,7 @@
 </div>
 {% endif %}
 {% endwith %}
-<br>
+<br><br>
 <!-- large screen view -->
 <div class="container">
 <div id="page">
@@ -86,7 +86,7 @@
     <ul class="nav nav-tabs" id="myTab-settings menu" role="tablist">
       <li class="nav-item" role="presentation">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-          aria-selected="true">Edit</a>
+          aria-selected="true" style="margin-bottom: 2px;">Edit</a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages"
@@ -96,18 +96,18 @@
   </div>
   <div id="clearingdiv"></div>
 </div>
-
+<br>
 <!-- small screen content -->
 <div class="maincontent-sm">
   <div class="text-center">
     <ul class="nav nav-tabs" id="myTab menu" role="tablist">
       <li class="nav-item" role="presentation">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#homesm" role="tab" aria-controls="home"
-          aria-selected="true">Edit</a>
+          aria-selected="true" style="color: black; background-color: white;">Edit</a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messagessm" role="tab" aria-controls="messages"
-          aria-selected="false">Advanced</a>
+          aria-selected="false" style="color: black; background-color: white;">Advanced</a>
       </li>
     </ul>
     <br>
