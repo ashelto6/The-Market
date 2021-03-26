@@ -2,231 +2,22 @@
 {% block uppertitle %} PORTFOLIO {% endblock %}
 {% block title %} Portfolio {% endblock %}
 {% block date %} {{date}} {% endblock %}
-{% block content %} {% with messages = get_flashed_messages() %} {% if messages %}
-<div class="container notification is-success" id="marg">{{ messages[0] }}</div>
+
+{% block content %}
+<br><br>
+{% with messages = get_flashed_messages() %} {% if messages %}
+<div class="container notification is-success">{{ messages[0] }}</div>
 {% endif %} {% endwith %}
 
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-<br><br>
-<div class="container">
-  <div class="col mb-4">
-    <!-- this block is shown on regular to large screens -->
-    <div id="page">
-      <div class="maincontent">
-        <div class="container">
-          <div class="text-center">
-            <span id="update_Portfoliodata">
-              <div class="row row-cols-1 row-cols-md-2">
-                {% for ticker in
-              data[0].securitiesAccount.positions|sort(attribute='marketValue',
-              reverse=True) %}
-                <!-- sorting the data by greatest market value to least -->
-                <div class="col mb-4">
-                  {% if
-                "%.2f"|format(ticker.marketValue/ticker.longQuantity)|float <
-                "%.2f"|format(ticker.averagePrice)|float %}
-                  <div class="card card-red">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ticker.instrument.symbol}}</h5>
-                      <p>
-                        <b>Current Price</b>: {{
-                      "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
-                      </p>
-                      <p></p>
-                      <div class="card card-body">
-                        <div class="container">
-                          <p>
-                            <small><b>Avg. PPS</b>:
-                              {{"$%.2f"|format(ticker.averagePrice)}}</small>
-                          </p>
-                          <p>
-                            <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
-                          </p>
-                          <p>
-                            <small><b>Net Worth</b>:
-                              {{"$%.2f"|format(ticker.marketValue)}}</small>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {% elif
-                "%.2f"|format(ticker.marketValue/ticker.longQuantity)|float >
-                "%.2f"|format(ticker.averagePrice)|float %}
-                  <div class="card card-green">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ticker.instrument.symbol}}</h5>
-                      <p>
-                        <b>Current Price</b>: {{
-                      "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
-                      </p>
-                      <p></p>
-                      <div class="card card-body">
-                        <div class="container">
-                          <p>
-                            <small><b>Avg. PPS</b>:
-                              {{"$%.2f"|format(ticker.averagePrice)}}</small>
-                          </p>
-                          <p>
-                            <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
-                          </p>
-                          <p>
-                            <small><b>Net Worth</b>:
-                              {{"$%.2f"|format(ticker.marketValue)}}</small>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {% else %}
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ticker.instrument.symbol}}</h5>
-                      <p>
-                        <b>Current Price</b>: {{
-                      "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
-                      </p>
-                      <p></p>
-                      <div class="card card-body">
-                        <div class="container">
-                          <p>
-                            <small><b>Avg PPS</b>:
-                              {{"$%.2f"|format(ticker.averagePrice)}}</small>
-                          </p>
-                          <p>
-                            <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
-                          </p>
-                          <p>
-                            <small><b>Net Worth</b>:
-                              {{"$%.2f"|format(ticker.marketValue)}}</small>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {% endif %}
-                </div>
-                {% endfor %}
-              </div>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="menuleftcontent">
-        <ul id="menu">
-          <li><a href="#"><button class="button is-info is-rounded">Menu</button></a></li>
-          <li><a href="#"><button class="button is-success is-rounded">will</button></a></li>
-          <li><a href="#"><button class="button is-warning is-rounded">go</button></a></li>
-          <li><a href="#"><button class="button is-danger is-rounded">here</button></a></li>
-        </ul>
-      </div>
-      <div id="clearingdiv"></div>
-    </div>
-
-    <!-- this block is shown on small screens -->
-
-    <div class="maincontent-sm">
-      <span id="update_Portfoliodata_sm">
-        {% for ticker in
-      data[0].securitiesAccount.positions|sort(attribute='marketValue',
-      reverse=True) %}
-        <div class="container">
-          <div class="text-center">
-            <div class="row row-cols-1 row-cols-md-2">
-              <div class="col mb-4">
-                {% if "%.2f"|format(ticker.marketValue/ticker.longQuantity)|float
-              < "%.2f"|format(ticker.averagePrice)|float %}
-
-                <div class="card card-red">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ticker.instrument.symbol}}</h5>
-                    <p>
-                      <b>Current Price</b>: {{
-                    "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
-                    </p>
-
-
-                    <div class="card card-body">
-                      <p>
-                        <small><b>Avg. PPS</b>:
-                          {{"$%.2f"|format(ticker.averagePrice)}}</small>
-                      </p>
-                      <p>
-                        <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
-                      </p>
-                      <p>
-                        <small><b>Net Worth</b>:
-                          {{"$%.2f"|format(ticker.marketValue)}}</small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {% elif
-              "%.2f"|format(ticker.marketValue/ticker.longQuantity)|float >
-              "%.2f"|format(ticker.averagePrice)|float %}
-
-                <div class="card card-green">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ticker.instrument.symbol}}</h5>
-                    <p>
-                      <b>Current Price</b>: {{
-                    "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
-                    </p>
-
-                    <div class="card card-body">
-                      <p>
-                        <small><b>Avg. PPS</b>:
-                          {{"$%.2f"|format(ticker.averagePrice)}}</small>
-                      </p>
-                      <p>
-                        <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
-                      </p>
-                      <p>
-                        <small><b>Net Worth</b>:
-                          {{"$%.2f"|format(ticker.marketValue)}}</small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {% else %}
-
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ticker.instrument.symbol}}</h5>
-                    <p>
-                      <b>Current Price</b>: {{
-                    "$%.2f"|format(ticker.marketValue/ticker.longQuantity) }}
-                    </p>
-
-                    <div class="card card-body">
-                      <p>
-                        <small><b>Avg. PPS</b>:
-                          {{"$%.2f"|format(ticker.averagePrice)}}</small>
-                      </p>
-                      <p>
-                        <small><b>Quantity</b>: {{ticker.longQuantity}}</small>
-                      </p>
-                      <p>
-                        <small><b>Net Worth</b>:
-                          {{"$%.2f"|format(ticker.marketValue)}}</small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </span>
-    </div>
-  </div>
-</div>
-<br /><br />
+<br>
+<!-- remove white color from text here and in Ajax file, once styling is complete-->
+<span style="color: white;" id="update_Portfoliodata">
+  {% for ticker in data[0].securitiesAccount.positions|sort(attribute='marketValue', reverse=True) %}
+  <hr>
+  {{ticker}}
+  {% endfor %}
+</span>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
@@ -249,23 +40,6 @@
     }
   });
 
-  $(function () {
-    window.setInterval(function () {
-      loadNewPortfoliodatasm()
-    }, 120000)
-
-    function loadNewPortfoliodatasm() {
-      $.ajax({
-        url: "/update_Portfoliodata_sm",
-        type: "POST",
-        dataType: "json",
-        success: function (data) {
-          $(update_Portfoliodata_sm).replaceWith(data)
-        }
-
-      });
-    }
-  });
   /* back to top button */
   mybutton = document.getElementById("myBtn");
 
