@@ -14,40 +14,40 @@ main = Blueprint('main', __name__)
 @main.route('/home')
 def index():
 	TDSession.login()
-	my_file = open("symbols/largecaps.txt")
+	my_file = open("symbols/bluechip.txt")
 	content = my_file.read()
-	LCticklist = content.split(", ")
+	BCticklist = content.split(", ")
 	my_file.close()
-	LCdata = TDSession.get_quotes(instruments=LCticklist)
-	LCdata_list=[]
-	for tick in LCticklist:
-		LCdata_list.append(LCdata[tick])
-	LCdata=LCdata_list
+	BCdata = TDSession.get_quotes(instruments=BCticklist)
+	BCdata_list=[]
+	for tick in BCticklist:
+		BCdata_list.append(BCdata[tick])
+	BCdata=BCdata_list
 
-	my_file = open("symbols/midcaps.txt")
+	my_file = open("symbols/smallcap.txt")
 	content = my_file.read()
-	MCticklist = content.split(", ")
+	SCticklist = content.split(", ")
 	my_file.close()
-	MCdata = TDSession.get_quotes(instruments=MCticklist)
-	MCdata_list=[]
-	for tick in MCticklist:
-		MCdata_list.append(MCdata[tick])
-	MCdata=MCdata_list
+	SCdata = TDSession.get_quotes(instruments=SCticklist)
+	SCdata_list=[]
+	for tick in SCticklist:
+		SCdata_list.append(SCdata[tick])
+	SCdata=SCdata_list
 	
-	my_file = open("symbols/smallcaps.txt")
+	my_file = open("symbols/featured.txt")
 	content = my_file.read()
-	PSticklist = content.split(", ")
+	Fticklist = content.split(", ")
 	my_file.close()
-	PSdata = TDSession.get_quotes(instruments=PSticklist)
-	PSdata_list=[]
-	for tick in PSticklist:
-		PSdata_list.append(PSdata[tick])
-	PSdata=PSdata_list
+	Fdata = TDSession.get_quotes(instruments=Fticklist)
+	Fdata_list=[]
+	for tick in Fticklist:
+		Fdata_list.append(Fdata[tick])
+	Fdata=Fdata_list
  
 	today = date.today()
 	today=today.strftime("%m/%d/%Y")
  
-	return render_template("/main/index.html",  LCdata=LCdata, MCdata=MCdata, PSdata=PSdata, date=today)
+	return render_template("/main/index.html",  BCdata=BCdata, SCdata=SCdata, Fdata=Fdata, date=today)
 
 #portfolio page route - GET
 @main.route('/portfolio')
@@ -90,49 +90,49 @@ def settings():
 ######################################### AJAX ROUTES ##############################################
 
 #PSData AJAX route - POST
-@main.route('/update_PSdata', methods=['POST'])
-def updatePSdata():
+@main.route('/update_Fdata', methods=['POST'])
+def updateFdata():
 	TDSession.login()
-	my_file = open("symbols/smallcaps.txt")
+	my_file = open("symbols/featured.txt")
 	content = my_file.read()
-	PSticklist = content.split(", ")
+	Fticklist = content.split(", ")
 	my_file.close()
-	PSdata = TDSession.get_quotes(instruments=PSticklist)
-	PSdata_list=[]
-	for tick in PSticklist:
-		PSdata_list.append(PSdata[tick])
-	PSdata=PSdata_list
-	return jsonify('', render_template('/ajax/update_PSdata_model.html', PSdata=PSdata))
+	Fdata = TDSession.get_quotes(instruments=Fticklist)
+	Fdata_list=[]
+	for tick in Fticklist:
+		Fdata_list.append(Fdata[tick])
+	Fdata=Fdata_list
+	return jsonify('', render_template('/ajax/update_Fdata_model.html', Fdata=Fdata))
 
 #MCdata AJAX route - POST
-@main.route('/update_MCdata', methods=['POST'])
-def updateMCdata():
+@main.route('/update_SCdata', methods=['POST'])
+def updateSCdata():
 	TDSession.login()
-	my_file = open("symbols/midcaps.txt")
+	my_file = open("symbols/smallcap.txt")
 	content = my_file.read()
-	MCticklist = content.split(", ")
+	SCticklist = content.split(", ")
 	my_file.close()
-	MCdata = TDSession.get_quotes(instruments=MCticklist)
-	MCdata_list=[]
-	for tick in MCticklist:
-		MCdata_list.append(MCdata[tick])
-	MCdata=MCdata_list
-	return jsonify('', render_template('/ajax/update_MCdata_model.html', MCdata=MCdata))
+	SCdata = TDSession.get_quotes(instruments=SCticklist)
+	SCdata_list=[]
+	for tick in SCticklist:
+		SCdata_list.append(SCdata[tick])
+	SCdata=SCdata_list
+	return jsonify('', render_template('/ajax/update_SCdata_model.html', SCdata=SCdata))
 
 #LCdata AJAX route - POST
-@main.route('/update_LCdata', methods=['POST'])
-def updateLCdata():
+@main.route('/update_BCdata', methods=['POST'])
+def updateBCdata():
 	TDSession.login()
-	my_file = open("symbols/largecaps.txt")
+	my_file = open("symbols/bluechip.txt")
 	content = my_file.read()
-	LCticklist = content.split(", ")
+	BCticklist = content.split(", ")
 	my_file.close()
-	LCdata = TDSession.get_quotes(instruments=LCticklist)
-	LCdata_list=[]
-	for tick in LCticklist:
-		LCdata_list.append(LCdata[tick])
-	LCdata=LCdata_list
-	return jsonify('', render_template('/ajax/update_LCdata_model.html', LCdata=LCdata))
+	BCdata = TDSession.get_quotes(instruments=BCticklist)
+	BCdata_list=[]
+	for tick in BCticklist:
+		BCdata_list.append(BCdata[tick])
+	BCdata=BCdata_list
+	return jsonify('', render_template('/ajax/update_BCdata_model.html', BCdata=BCdata))
 
 #Portfolio AJAX route 
 @main.route('/update_Portfoliodata', methods=['POST'])
@@ -140,11 +140,4 @@ def updatePortfoliodata():
 	TDSession.login()
 	data = TDSession.get_accounts(account='all', fields=['positions'])
 	return jsonify('', render_template('/ajax/update_Portfoliodata_model.html', data=data))
-
-#Portfolio(small devices) AJAX route
-@main.route('/update_Portfoliodata_sm', methods=['POST'])
-def updatePortfoliodatasm():
-	TDSession.login()
-	data = TDSession.get_accounts(account='all', fields=['positions'])
-	return jsonify('', render_template('/ajax/update_Portfoliodata_sm_model.html', data=data))
 #######################################################################################
