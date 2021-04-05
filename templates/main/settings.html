@@ -14,205 +14,205 @@
 <br><br>
 <!-- large screen view -->
 <div class="container">
-<div id="page">
-  <div class="tab-content">
-    <!-- edit profile content -->
-    <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <div class="maincontent">
-        <div class="container-home">
-          <div class="text-center">
-            <form method="POST" action="/settings/edit_profile">
+  <div id="page">
+    <div class="tab-content">
+      <!-- edit profile content -->
+      <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="maincontent">
+          <div class="container-home">
+            <div class="text-center">
+              <form method="POST" action="/settings/edit_profile">
 
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="text" name="first name" placeholder="First Name"
-                    value="{{current_user.first_name}}" autofocus="">
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="text" name="first name" placeholder="First Name"
+                      value="{{current_user.first_name}}" autofocus="">
+                  </div>
                 </div>
-              </div>
 
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="text" name="last name" placeholder="Last Name"
-                    value="{{current_user.last_name}}" autofocus="">
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="text" name="last name" placeholder="Last Name"
+                      value="{{current_user.last_name}}" autofocus="">
+                  </div>
                 </div>
-              </div>
 
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="email" name="email" placeholder="Email"
-                    value="{{current_user.email}}" autofocus="">
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="email" name="email" placeholder="Email"
+                      value="{{current_user.email}}" autofocus="">
+                  </div>
                 </div>
-              </div>
 
-              <button id="marg" class="button is-block is-success is-large is-fullwidth">Save Changes</button>
+                <button id="marg" class="button is-block is-success is-large is-fullwidth">Save Changes</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- change password and delete account content -->
+      <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+        <div class="maincontent">
+          <div class="container-home">
+            <div class="text-center">
+              <form method="POST" action="/settings/change_password">
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="password" name="Old password" placeholder="Current Password">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="password" name="New password" placeholder="New Password">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="password" name="New password again" placeholder="New Password">
+                  </div>
+                </div>
+            </div>
+
+            <button id="marg" class="button is-block is-info is-large is-fullwidth">Change Password</button>
             </form>
           </div>
         </div>
       </div>
     </div>
-    <!-- change password and delete account content -->
-    <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
-      <div class="maincontent">
-        <div class="container-home">
-          <div class="text-center">
-            <form method="POST" action="/settings/change_password">
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="password" name="Old password" placeholder="Current Password">
-                </div>
-              </div>
+    <!-- large screen left menu -->
+    <div class="menuleftcontent">
+      <ul class="nav nav-tabs" id="myTab-settings menu" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" style="color: black; background-color: white;" id="home-tab" data-toggle="tab"
+            href="#home" role="tab" aria-controls="home" aria-selected="true" style="margin-bottom: 2px;">Edit</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" style="color: black; background-color: white;" id="messages-tab" data-toggle="tab"
+            href="#messages" role="tab" aria-controls="messages" aria-selected="false">Advanced</a>
+        </li>
+      </ul>
+    </div>
+    <div id="clearingdiv"></div>
+  </div>
+  <br>
+  <!-- small screen content -->
+  <div class="maincontent-sm">
+    <div class="text-center">
+      <ul class="nav nav-tabs" id="myTab menu" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#homesm" role="tab" aria-controls="home"
+            aria-selected="true" style="color: black; background-color: white;">Edit</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messagessm" role="tab" aria-controls="messages"
+            aria-selected="false" style="color: black; background-color: white;">Advanced</a>
+        </li>
+      </ul>
+      <br>
+      <div class="tab-content">
+        <div class="tab-pane active" id="homesm" role="tabpanel" aria-labelledby="home-tab">
+          <div class="container">
+            <div class="text-center">
+              <form method="POST" action="/settings/edit_profile">
 
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="password" name="New password" placeholder="New Password">
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="text" name="first name" placeholder="First Name"
+                      value="{{current_user.first_name}}" autofocus="">
+                  </div>
                 </div>
-              </div>
 
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="password" name="New password again" placeholder="New Password">
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="text" name="last name" placeholder="Last Name"
+                      value="{{current_user.last_name}}" autofocus="">
+                  </div>
                 </div>
-              </div>
+
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="email" name="email" placeholder="Email"
+                      value="{{current_user.email}}" autofocus="">
+                  </div>
+                </div>
+
+                <button id="marg" class="button is-block is-success is-large is-fullwidth">Save Changes</button>
+              </form>
+            </div>
           </div>
+        </div>
 
-          <button id="marg" class="button is-block is-info is-large is-fullwidth">Change Password</button>
+        <div class="tab-pane" id="messagessm" role="tabpanel" aria-labelledby="messages-tab">
+          <div class="container">
+            <div class="text-center">
+              <form method="POST" action="/settings/change_password">
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="password" name="Old password" placeholder="Current Password">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="password" name="New password" placeholder="New Password">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control">
+                    <input class="input is-large" type="password" name="New password again" placeholder="New Password">
+                  </div>
+                </div>
+                <button id="marg" class="button is-block is-info is-large is-fullwidth">Change Password</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+  <div class="dropdown ">
+    <a class="btn btn-warning dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      More
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#exampleModal">
+        Delete Account
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <b>Are you sure you want to DELETE your account?</b>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+          <form method="POST" action="/settings/delete_account">
+            <button class="btn btn-danger">Delete Account</button>
           </form>
         </div>
       </div>
     </div>
   </div>
-  <!-- large screen left menu -->
-  <div class="menuleftcontent">
-    <ul class="nav nav-tabs" id="myTab-settings menu" role="tablist">
-      <li class="nav-item" role="presentation">
-        <a class="nav-link active" style="color: black; background-color: white;" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-          aria-selected="true" style="margin-bottom: 2px;">Edit</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" style="color: black; background-color: white;" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages"
-          aria-selected="false">Advanced</a>
-      </li>
-    </ul>
-  </div>
-  <div id="clearingdiv"></div>
-</div>
-<br>
-<!-- small screen content -->
-<div class="maincontent-sm">
-  <div class="text-center">
-    <ul class="nav nav-tabs" id="myTab menu" role="tablist">
-      <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#homesm" role="tab" aria-controls="home"
-          aria-selected="true" style="color: black; background-color: white;">Edit</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messagessm" role="tab" aria-controls="messages"
-          aria-selected="false" style="color: black; background-color: white;">Advanced</a>
-      </li>
-    </ul>
-    <br>
-    <div class="tab-content">
-      <div class="tab-pane active" id="homesm" role="tabpanel" aria-labelledby="home-tab">
-        <div class="container">
-          <div class="text-center">
-            <form method="POST" action="/settings/edit_profile">
-
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="text" name="first name" placeholder="First Name"
-                    value="{{current_user.first_name}}" autofocus="">
-                </div>
-              </div>
-
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="text" name="last name" placeholder="Last Name"
-                    value="{{current_user.last_name}}" autofocus="">
-                </div>
-              </div>
-
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="email" name="email" placeholder="Email"
-                    value="{{current_user.email}}" autofocus="">
-                </div>
-              </div>
-
-              <button id="marg" class="button is-block is-success is-large is-fullwidth">Save Changes</button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-pane" id="messagessm" role="tabpanel" aria-labelledby="messages-tab">
-        <div class="container">
-          <div class="text-center">
-            <form method="POST" action="/settings/change_password">
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="password" name="Old password" placeholder="Current Password">
-                </div>
-              </div>
-
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="password" name="New password" placeholder="New Password">
-                </div>
-              </div>
-
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="password" name="New password again" placeholder="New Password">
-                </div>
-              </div>
-              <button id="marg" class="button is-block is-info is-large is-fullwidth">Change Password</button>
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<br><br>
-<div class="dropdown ">
-  <a class="btn btn-warning dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-    aria-haspopup="true" aria-expanded="false">
-    More
-  </a>
-
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#exampleModal">
-      Delete Account
-    </button>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <b>Are you sure you want to DELETE your account?</b>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
-        <form method="POST" action="/settings/delete_account">
-          <button class="btn btn-danger">Delete Account</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<br><br><br>
+  <br><br><br>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
