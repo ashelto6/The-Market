@@ -1,15 +1,21 @@
 body {
-  background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+  background-size: 20px 20px;
+  padding-right: 0px !important;
+  margin-right: 0px !important;
+  overflow-x: hidden;
+}
+.home-bg{
+    background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
     linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
     linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
     linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
     linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
     linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
-  background-color: #131313;
-  background-size: 20px 20px;
-  padding-right: 0px !important;
-  margin-right: 0px !important;
-  overflow-x: hidden;
+    background-color: #131313;
+    background-size: 20px 20px;
+    padding-right: 0px !important;
+    margin-right: 0px !important;
+    overflow-x: hidden;
 }
 
 * {
@@ -61,11 +67,6 @@ nav.upper-navbar {
   margin-left: 11px;
 }
 
-
-#nav-shad {
-  border-bottom: 3px rgb(0, 0, 0, 0.15) solid;
-}
-
 .navbar {
   position: relative;
   display: -ms-flexbox;
@@ -77,6 +78,12 @@ nav.upper-navbar {
   -ms-flex-pack: justify;
   justify-content: center;
   padding: .5rem 1rem;
+   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+
+}
+
+.footer-shad{
+     box-shadow: 4px 0 0 2px rgba(0, 0, 0, .2);
 }
 
 .footer-item {
@@ -111,23 +118,27 @@ nav.upper-navbar {
   border: 1px solid transparent;
   margin-left: 4px;
   margin-right: 4px;
+  margin-bottom: 2px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-  color: #495057;
+
   background-color: rgba(0, 0, 0, 0.603);
   border-color: rgb(0, 153, 8) rgb(0, 153, 8) rgb(0, 153, 8);
 }
 
+
 #featured-tab,
 #smallcap-tab,
-#bluechip-tab,
-#home-tab,
-#messages-tab {
+#bluechip-tab{
   color: rgb(255, 255, 255)
+}
+#home-tab,
+#messages-tab{
+  color: #000000;
 }
 
 li {
