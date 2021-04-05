@@ -11,8 +11,8 @@
 
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <br>
-<!-- remove white color from text here and in Ajax file, once styling is complete-->
-<span style="color: white;" id="update_Portfoliodata">
+
+<span id="update_Portfoliodata">
   {% for ticker in data[0].securitiesAccount.positions|sort(attribute='marketValue', reverse=True) %}
   <hr>
   {{ticker}}
