@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
+from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from td.client import TDClient
@@ -14,21 +15,28 @@ TDSession = TDClient(
  credentials_path=os.environ.get('CREDENTIALS_PATH')
 )
 TDSession.login()
-
 db = SQLAlchemy()
+mail = Mail()
 
 def create_app():
  app = Flask(__name__)
 
  app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
  app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+ app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER')
+ app.config['MAIL_PORT'] = os.environ.get('MAIL_PORT')
+ app.config['MAIL_USE_TLS'] = True
+ app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')  
+ app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_USERNAME')
+ app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+ 
+ mail.init_app(app)
 
  db.init_app(app)
 
  login_manager = LoginManager()
  login_manager.login_view = 'auth.login'
  login_manager.init_app(app)
-
  from .models import User
 
  @login_manager.user_loader

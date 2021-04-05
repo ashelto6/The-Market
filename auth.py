@@ -5,9 +5,22 @@ from flask_login import login_user, logout_user, login_required, current_user
 from .models import User
 from .check import ef5count, ef3count
 from datetime import date
-from . import db
+from . import db, mail, Message, create_app
+from threading import Thread
 
 auth = Blueprint('auth', __name__)
+app = create_app()
+
+def async_send_mail(app, msg):
+  with app.app_context():
+    mail.send(msg)
+
+def send_mail(subject, recipient, template, **kwargs):
+  msg = Message(subject, sender=app.config['MAIL_DEFAULT_SENDER'], recipients=[recipient])
+  msg.html = render_template(template, **kwargs)
+  thr = Thread(target=async_send_mail, args=[app, msg])
+  thr.start()
+  return thr
 
 #login page route - GET
 @auth.route('/login')
@@ -74,6 +87,8 @@ def signup_post():
   new_user = User(first_name=first_name, last_name=last_name, email=email, password=generate_password_hash(password, method='sha256'))
   db.session.add(new_user)
   db.session.commit()
+  
+  send_mail("Welcome to Tony's Stocks!", email, 'mail/welcome.html', name=first_name)
 
   flash("Account Successfully Created!")
   return redirect(url_for('auth.login'))
