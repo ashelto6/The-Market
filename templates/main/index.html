@@ -78,10 +78,6 @@
       <a class="nav-link" id="bluechip-tab" data-toggle="tab" href="#bluechip" role="tab" aria-controls="bluechip"
         aria-selected="false"><strong>BLUE CHIP</strong></a>
     </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="smallcap-tab" data-toggle="tab" href="#smallcap" role="tab" aria-controls="smallcap"
-        aria-selected="false"><strong>SMALL CAP</strong></a>
-    </li>
   </ul>
 
   <div class="text-center" style="color: rgb(182, 182, 182);"><small><i>Quotes updated every minute</i></small></div>
@@ -90,13 +86,13 @@
   <button onclick="topFunction()" id="myBtn" title="Go to tabs section">Tabs</button>
   <div class="tab-content">
 
-    <!--------------------------------------------------- PENNY CARDS --------------------------------------------------------->
+    <!--------------------------------------------------- FEATURED CARDS --------------------------------------------------------->
     <div class="tab-pane fade show active" id="featured" role="tabpanel" aria-labelledby="featured-tab">
       <div class="container-home">
         <div class="text-center">
           <span id="update_Fdata">{% for ticker in Fdata %}
             {% if ticker.lastPrice < ticker.closePrice %}
-            <!-- Penny: if red day -->
+            <!-- Featured: if red day -->
             <div class="col mb-4">
               <div class="card card-red">
                 <div class="card-body">
@@ -124,7 +120,7 @@
               </div>
             </div>
             {% elif ticker.lastPrice > ticker.closePrice %}
-            <!-- Penny: if green day -->
+            <!-- Featured: if green day -->
             <div class="col mb-4">
               <div class="card card-green">
                 <div class="card-body">
@@ -152,7 +148,7 @@
               </div>
             </div>
             {% else %}
-            <!-- Penny: if break even day -->
+            <!-- Featured: if break even day -->
             <div class="col mb-4">
               <div class="card">
                 <div class="card-body">
@@ -191,116 +187,15 @@
         </a>
       </div>
     </div>
-    <!------------------------------------------------ MID CAP CARDS ------------------------------------------------->
-    <div class="tab-pane fade" id="smallcap" role="tabpanel" aria-labelledby="smallcap-tab">
-      <div class="container-home">
-        <div class="text-center">
-          <div class="row-cols-md-2">
-            <span id="update_SCdata">{% for ticker in SCdata %}
-              {% if ticker.lastPrice < ticker.closePrice %}
-              <!-- Mid: if red day -->
-              <div class="col mb-4">
-                <div class="card card-red">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ticker.symbol}}
-                    </h5>
-                    <p><b>Price</b>: {{"$%.2f"|format(ticker.lastPrice)}} <span
-                        style="color: red;">({{"%.2f"|format("%.2f"|format(ticker.lastPrice)|float - "%.2f"|format(ticker.closePrice)|float)}})</span>
-                    </p>
-                    <!--<p>
-                      <a class="btn btn-sm btn-danger" data-toggle="collapse" href="#{{ticker.symbol}}H" role="button"
-                        aria-expanded="false" aria-controls="{{ticker.symbol}}H">
-                        More
-                      </a>
-                    </p>-->
-                    <!--<div class="collapse" id="{{ticker.symbol}}H">-->
-                    <div class="card card-body">
-                      <p><b>Open</b>: {{"$%.2f"|format(ticker.openPrice)}}</p>
-                      <p><b>High</b>: {{"$%.2f"|format(ticker.highPrice)}}</p>
-                      <p><b>Low</b>: {{"$%.2f"|format(ticker.lowPrice)}}</p>
-                      <p><b>Last Close</b>: {{"$%.2f"|format(ticker.closePrice)}}</p>
-                      <p><b>Volume</b>: {{ticker.totalVolume}}</p>
-                    </div>
-                    <!--</div>-->
-                  </div>
-                </div>
-              </div>
-              {% elif ticker.lastPrice > ticker.closePrice %}
-              <!-- Mid: if green day -->
-              <div class="col mb-4">
-                <div class="card card-green">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ticker.symbol}}
-                    </h5>
-                    <p><b>Price</b>: {{"$%.2f"|format(ticker.lastPrice)}} <span
-                        style="color: green;">(+{{"%.2f"|format("%.2f"|format(ticker.lastPrice)|float - "%.2f"|format(ticker.closePrice)|float)}})</span>
-                    </p>
-                    <!--<p>
-                      <a class="btn btn-sm btn-success" data-toggle="collapse" href="#{{ticker.symbol}}H" role="button"
-                        aria-expanded="false" aria-controls="{{ticker.symbol}}H">
-                        More
-                      </a>
-                    </p>-->
-                    <!--<div class="collapse" id="{{ticker.symbol}}H">-->
-                    <div class="card card-body">
-                      <p><b>Open</b>: {{"$%.2f"|format(ticker.openPrice)}}</p>
-                      <p><b>High</b>: {{"$%.2f"|format(ticker.highPrice)}}</p>
-                      <p><b>Low</b>: {{"$%.2f"|format(ticker.lowPrice)}}</p>
-                      <p><b>Last Close</b>: {{"$%.2f"|format(ticker.closePrice)}}</p>
-                      <p><b>Volume</b>: {{ticker.totalVolume}}</p>
-                    </div>
-                    <!--</div>-->
-                  </div>
-                </div>
-              </div>
-              {% else %}
-              <!-- Mid: if break even day -->
-              <div class="col mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ticker.symbol}}
-                    </h5>
-                    <p><b>Price</b>: {{"$%.2f"|format(ticker.lastPrice)}} <span
-                        style="color: gray;">(±{{"%.2f"|format("%.2f"|format(ticker.lastPrice)|float - "%.2f"|format(ticker.closePrice)|float)}})</span>
-                    </p>
-                    <!--<p>
-                      <a class="btn btn-sm btn-secondary" data-toggle="collapse" href="#{{ticker.symbol}}H"
-                        role="button" aria-expanded="false" aria-controls="{{ticker.symbol}}H">
-                        More
-                      </a>
-                    </p>-->
-                    <!--<div class="collapse" id="{{ticker.symbol}}H">-->
-                    <div class="card card-body">
-                      <p><b>Open</b>: {{"$%.2f"|format(ticker.openPrice)}}</p>
-                      <p><b>High</b>: {{"$%.2f"|format(ticker.highPrice)}}</p>
-                      <p><b>Low</b>: {{"$%.2f"|format(ticker.lowPrice)}}</p>
-                      <p><b>Last Close</b>: {{"$%.2f"|format(ticker.closePrice)}}</p>
-                      <p><b>Volume</b>: {{ticker.totalVolume}}</p>
-                    </div>
-                    <!--</div>-->
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-              {% endfor %}
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class="text-left">
-        <a id="btt" class="button is-dark is-rounded is-small" href="#top">
-          Back to top
-        </a>
-      </div>
-    </div>
-    <!-------------------------------------- LARGE CAP CARDS -------------------------------------------->
+
+    <!-------------------------------------- BLUE CHIP CARDS -------------------------------------------->
     <div class="tab-pane fade" id="bluechip" role="tabpanel" aria-labelledby="bluechip-tab">
       <div class="container-home">
         <div class="text-center">
           <div class="row-cols-md-2">
             <span id="update_BCdata">{% for ticker in BCdata %}
               {% if ticker.lastPrice < ticker.closePrice %}
-              <!-- Large: if red day -->
+              <!-- Blue Chip: if red day -->
               <div class="col mb-4">
                 <div class="card card-red">
                   <div class="card-body">
@@ -328,7 +223,7 @@
                 </div>
               </div>
               {% elif ticker.lastPrice > ticker.closePrice %}
-              <!-- Large: if green day -->
+              <!-- Blue Chip: if green day -->
               <div class="col mb-4">
                 <div class="card card-green">
                   <div class="card-body">
@@ -356,7 +251,7 @@
                 </div>
               </div>
               {% else %}
-              <!-- Large: if break even day -->
+              <!-- Blue Chip: if break even day -->
               <div class="col mb-4">
                 <div class="card">
                   <div class="card-body">
@@ -418,24 +313,6 @@
         dataType: "json",
         success: function (data) {
           $(update_Fdata).replaceWith(data)
-        }
-
-      });
-    }
-  });
-
-  $(function () {
-    window.setInterval(function () {
-      loadNewSCdata()
-    }, 2500)
-
-    function loadNewSCdata() {
-      $.ajax({
-        url: "/update_SCdata",
-        type: "POST",
-        dataType: "json",
-        success: function (data) {
-          $(update_SCdata).replaceWith(data)
         }
 
       });

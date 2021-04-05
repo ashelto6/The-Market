@@ -23,16 +23,6 @@ def index():
 	for tick in BCticklist:
 		BCdata_list.append(BCdata[tick])
 	BCdata=BCdata_list
-
-	my_file = open("symbols/smallcap.txt")
-	content = my_file.read()
-	SCticklist = content.split(", ")
-	my_file.close()
-	SCdata = TDSession.get_quotes(instruments=SCticklist)
-	SCdata_list=[]
-	for tick in SCticklist:
-		SCdata_list.append(SCdata[tick])
-	SCdata=SCdata_list
 	
 	my_file = open("symbols/featured.txt")
 	content = my_file.read()
@@ -47,7 +37,7 @@ def index():
 	today = date.today()
 	today=today.strftime("%m/%d/%Y")
  
-	return render_template("/main/index.html",  BCdata=BCdata, SCdata=SCdata, Fdata=Fdata, date=today)
+	return render_template("/main/index.html",  BCdata=BCdata, Fdata=Fdata, date=today)
 
 #portfolio page route - GET
 @main.route('/portfolio')
@@ -103,21 +93,6 @@ def updateFdata():
 		Fdata_list.append(Fdata[tick])
 	Fdata=Fdata_list
 	return jsonify('', render_template('/ajax/update_Fdata_model.html', Fdata=Fdata))
-
-#MCdata AJAX route - POST
-@main.route('/update_SCdata', methods=['POST'])
-def updateSCdata():
-	TDSession.login()
-	my_file = open("symbols/smallcap.txt")
-	content = my_file.read()
-	SCticklist = content.split(", ")
-	my_file.close()
-	SCdata = TDSession.get_quotes(instruments=SCticklist)
-	SCdata_list=[]
-	for tick in SCticklist:
-		SCdata_list.append(SCdata[tick])
-	SCdata=SCdata_list
-	return jsonify('', render_template('/ajax/update_SCdata_model.html', SCdata=SCdata))
 
 #LCdata AJAX route - POST
 @main.route('/update_BCdata', methods=['POST'])
