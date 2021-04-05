@@ -136,6 +136,9 @@ def change_password():
   
   current_user.password=generate_password_hash(new_password, method='sha256')
   db.session.commit()
+  
+  send_mail("Recent Changes To Your Password", current_user.email, 'mail/changedpwd.html', name=current_user.first_name)
+  
   flash("Password has been successfully changed! Login with your new password.")
   return redirect(url_for('auth.login'))
 
@@ -169,6 +172,7 @@ def edit_profile():
   current_user.email = email
   db.session.commit()
 
+  send_mail("Recent Changes To Your Profile", current_user.email, 'mail/changedprofile.html', name=current_user.first_name)
   flash('Account Successfully Updated!')
   return redirect(url_for('main.settings'))
 
@@ -178,10 +182,16 @@ def edit_profile():
 def delete_account():
   if request.method == 'GET':
     return redirect(url_for('main.settings'))
-  
+  name = current_user.first_name
+  email = current_user.email
   if current_user:
     db.session.delete(current_user)
     db.session.commit()
+
+  send_mail("We're Sorry To See You Go!", email, 'mail/deletedaccount.html', name=name)
+  email = ""
+  name = ""
+
   flash("Your account has been permanently deleted.")
   return redirect(url_for('main.index'))
 
