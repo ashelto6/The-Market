@@ -11,10 +11,12 @@ from threading import Thread
 auth = Blueprint('auth', __name__)
 app = create_app()
 
+#takes in the current instance of app, sends email asynchronously
 def async_send_mail(app, msg):
   with app.app_context():
     mail.send(msg)
 
+#template function for threaded emails
 def send_mail(subject, recipient, template, **kwargs):
   msg = Message(subject, sender=app.config['MAIL_DEFAULT_SENDER'], recipients=[recipient])
   msg.html = render_template(template, **kwargs)
